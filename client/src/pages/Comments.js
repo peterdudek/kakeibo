@@ -7,11 +7,12 @@ import { Table, Tr, Td } from "../components/Table";
 import { ForwardRefInput, FormBtn } from "../components/Form";
 
 function Comments({ username }) {
+	console.log(username)
 	// Setting our component's initial state
 	const [comments, setComments] = useState([]);
 	const [formObject, setFormObject] = useState({
       body: "",
-      username: ""
+      username: username
    });
    
    // get input element ref for focus
@@ -22,8 +23,8 @@ function Comments({ username }) {
       // set user after successful component mount
       setFormObject({
          body: "",
-         username: "", 
-         username})
+				 username: username
+				})
 
       loadComments();
 
@@ -64,7 +65,7 @@ function Comments({ username }) {
             .then(loadComments)
             .then(() => setFormObject({
                body: "",
-               username: ""
+               username: username
             }))
 				.catch((err) => console.log(err));
 		}
