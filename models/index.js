@@ -1,7 +1,7 @@
 const Subscription = require("./subscription");
 
 module.exports = {
-  Comment: require("./Comment"),
+  //Comment: require("./Comment"),
   User: require("./User"),
   Subscription:require("./Subscription")
  
