@@ -14,13 +14,24 @@ const userSeed = {
     email: "admin@contact.us",
     password: "1"
 };
+
+// username: { type: String, required: true },
+// 	subscriptionName: { type: String, required: true },
+// 	paymentAmount: { type: Number, required: true },
+//    date: { type: Date, default: Date.now },
+
+
 const subscriptionsSeeds = [{
-        body: "🚀 initial seed",
-        username: "Admin"
+        username: "Admin",
+        subscriptionName: "Netflix",
+        paymentAmount: "$8.99",
+        date: { type: Date, default: Date.now },
     },
     {
-        body: "👾 another",
-        username: "Admin"
+        username: "Admin",
+        subscriptionName: "Hulu",
+        paymentAmount: "$5.99",
+        date: { type: Date, default: Date.now },
     },
 
 ];
