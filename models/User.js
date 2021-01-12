@@ -17,10 +17,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  comments: [
+  subscription: [
    {
      type: mongoose.Types.ObjectId,
-     ref: "Comment"
+     ref: "Subscription"
    }
  ]
   // ..anything else you want on your user
