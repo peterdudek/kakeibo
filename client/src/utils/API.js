@@ -1,20 +1,20 @@
 import axios from "axios";
 
 export default {
-  // Gets all comments
-  getComments: function() {
-    return axios.get("/api/comments");
+  // Gets all subscriptions
+  getSubscriptions: function() {
+    return axios.get("/api/subscriptions");
   },
   // Gets the comment with the given id
   getComment: function(id) {
-    return axios.get("/api/comments/" + id);
+    return axios.get("/api/subscriptions/" + id);
   },
   // Deletes the comment with the given id
-  deleteComment: function(id) {
-    return axios.delete("/api/comments/" + id);
+  deleteSubscription: function(id) {
+    return axios.delete("/api/subscriptions/" + id);
   },
   // Saves a comment to the database
-  saveComment: function(commentData) {
-    return axios.post("/api/comments", commentData);
+  saveSubscription: function(subscriptionData) {
+    return axios.post("/api/subscriptions", subscriptionData);
   }
 };
