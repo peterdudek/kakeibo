@@ -1,6 +1,6 @@
 const db = require("../models");
 
-// Defining methods for the subscriptionController
+// Defining methods for the subscriptionsController
 
 module.exports = {
   findAll: function (req, res) {

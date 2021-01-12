@@ -14,6 +14,13 @@ const userSeed = {
     email: "admin@contact.us",
     password: "1"
 };
+
+// username: { type: String, required: true },
+// 	subscriptionName: { type: String, required: true },
+// 	paymentAmount: { type: Number, required: true },
+//    date: { type: Date, default: Date.now },
+
+
 const subscriptionsSeeds = [{
         username: "Admin",
         subscriptionName: "Netflix",
