@@ -14,7 +14,7 @@ const userSeed = {
     email: "admin@contact.us",
     password: "1"
 };
-const commentsSeeds = [{
+const subscriptionsSeeds = [{
         body: "🚀 initial seed",
         username: "Admin"
     },
@@ -27,19 +27,19 @@ const commentsSeeds = [{
 
 // remove all comments
 // db.Comment.deleteMany({})
-db.Comment.deleteMany({})
+db.Subscription.deleteMany({})
     // remove all users
     .then(() => db.User.deleteMany({}))
     // add user
     .then(() => db.User.create(userSeed))
     // add comments seeds
-    .then((user) => db.Subscription.create(commentsSeeds[0])
+    .then((user) => db.Subscription.create(subscriptionsSeeds[0])
         // add comment ref to user
-        .then(({ _id }) => db.User.findOneAndUpdate({ _id: user._id }, { $push: { comments: _id } }, { new: true }))
+        .then(({ _id }) => db.User.findOneAndUpdate({ _id: user._id }, { $push: { subscriptions: _id } }, { new: true }))
     )
-    .then((user) => db.Comment.create(commentsSeeds[1])
+    .then((user) => db.Subscription.create(subscriptionsSeeds[1])
         // add comment ref to user
-        .then(({ _id }) => db.User.findOneAndUpdate({ _id: user._id }, { $push: { comments: _id } }, { new: true }))
+        .then(({ _id }) => db.User.findOneAndUpdate({ _id: user._id }, { $push: { subscriptions: _id } }, { new: true }))
     )
     .then(() => {
         process.exit(0);
