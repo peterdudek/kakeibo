@@ -7,14 +7,14 @@ import { Input, FormBtn } from "../components/Form";
 
 class Login extends Component {
   state = {
-      email: "",
-      password: ""
-    };
-    
+    email: "",
+    password: ""
+  };
+
   componentDidMount() {
- 
+
   }
-  
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -30,8 +30,8 @@ class Login extends Component {
         password: this.state.password
       })
         .then(res => {
-          if(res.status === 200 ){
-             this.props.setUserState(res.data)
+          if (res.status === 200) {
+            this.props.setUserState(res.data)
           }
         })
         .catch(err => console.log(err));
@@ -57,16 +57,16 @@ class Login extends Component {
                 placeholder="(password required)"
                 type="password"
               />
-              
+
               <FormBtn
                 disabled={!(this.state.email && this.state.password)}
                 onClick={this.handleFormSubmit}
               >
                 Log in
               </FormBtn>
-             <Link to="/signup">
-               <FormBtn> Signup </FormBtn>
-             </Link>
+              <Link to="/signup">
+                <FormBtn> Signup </FormBtn>
+              </Link>
             </form>
           </Col>
         </Row>
