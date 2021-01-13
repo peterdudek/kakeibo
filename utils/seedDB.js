@@ -25,13 +25,13 @@ const subscriptionsSeeds = [{
         username: "Admin",
         subscriptionName: "Netflix",
         paymentAmount: "$8.99",
-        date: { type: Date, default: Date.now },
+        date: { type: Date, default: Date.now }
     },
     {
         username: "Admin",
         subscriptionName: "Hulu",
         paymentAmount: "$5.99",
-        date: { type: Date, default: Date.now },
+        date: { type: Date, default: Date.now }
     },
 
 ];
