@@ -1,8 +1,9 @@
 import React from "react";
+import "./style.css";
 
 export function Table({ children }) {
 	return (
-		<table className=" table table-dark table-striped text-center text-break">
+		<table className=" table table-dark table-striped text-center text-break tableRound">
 			<tbody>
 				{children}
 			</tbody>

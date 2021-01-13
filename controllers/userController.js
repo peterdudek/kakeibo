@@ -9,7 +9,6 @@ module.exports = {
          _id: req.user._id,
          username: req.user.username,
          email: req.user.email,
-         //subscriptions: req.user.subscriptions
          subscriptions: req.user.subscriptions
       });
    },

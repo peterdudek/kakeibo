@@ -118,3 +118,7 @@ body {
 .kakeiboFont {
   font-family: 'Hachi Maru Pop', cursive;
 }
+
+.marginTop {
+  margin-top: 50px;
+}
