@@ -104,14 +104,14 @@ db.Subscription.deleteMany({})
     // add user
     .then(() => db.User.create(userSeed))
     // add comments seeds
-    .then((user) => db.Subscription.create(subscriptionsSeeds[0])
+    .then((user) => db.Subscription.create(subscriptionsSeeds)
         // add comment ref to user
         .then(({ _id }) => db.User.findOneAndUpdate({ _id: user._id }, { $push: { subscriptions: _id } }, { new: true }))
     )
-    .then((user) => db.Subscription.create(subscriptionsSeeds[1])
-        // add comment ref to user
-        .then(({ _id }) => db.User.findOneAndUpdate({ _id: user._id }, { $push: { subscriptions: _id } }, { new: true }))
-    )
+    // .then((user) => db.Subscription.create(subscriptionsSeeds[1])
+    //     // add comment ref to user
+    //     .then(({ _id }) => db.User.findOneAndUpdate({ _id: user._id }, { $push: { subscriptions: _id } }, { new: true }))
+    // )
     .then(() => {
         process.exit(0);
     })

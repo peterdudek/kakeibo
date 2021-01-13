@@ -14,7 +14,7 @@ a:hover {
 
 
 /* svg:hover {
-   fill: red;
+  fill: red;
 } */
 .main-container {
   min-height: calc(100vh - var(--footer-height));
@@ -48,7 +48,8 @@ a:hover {
 
 body {
   width: 100%;
-  background-color: #d7d7d7ec;
+  background-color: #f2eecb;
+  color: rgb(2, 2, 37);
 
   /* color: white; */
   margin: 0;
@@ -112,4 +113,8 @@ body {
   margin-top: 10px;
   width: 398px;
   margin-bottom: 16px;
+}
+
+.kakeiboFont {
+  font-family: 'Hachi Maru Pop', cursive;
 }

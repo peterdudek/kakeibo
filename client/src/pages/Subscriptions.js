@@ -83,9 +83,41 @@ function Subscriptions({ username }) {
 
 	return <>
 		<Row>
-			<Col size='md-12'>
+			<Col size='md-4'>
+			<h4 style={{ textAlign: "center", display: "block" }}>Most popular subscriptions</h4>
+				{subscriptions.length ? (
+					<Table>
+						{subscriptions.map(subscription => (
+							<Tr key={subscription._id}>
+								<Td>
+									<Link
+										to={"/subscriptions/" + subscription._id}
+										style={{ textAlign: "left", display: "block" }}>
+										<strong>
+											{/* Commented out for now */}
+											{/* {subscription.username}: */}
+											</strong> {subscription.subscriptionName} {"    "} {subscription.paymentAmount} 
+									</Link>
+								</Td>
+								<Td>
+									{/* WE CAN ADD DATE TO SUBSCRIPTION MODEL */}
+									{/* {subscription.date} */}
+								</Td>
+								<Td>
+									<DeleteBtn onClick={() => deleteSubscription(subscription._id)} />
+								</Td>
+							</Tr>
+						))}
+					</Table>
+				) : (
+						<h3>No Results to Display</h3>
+					)}
+			</Col>
+		</Row>,
+		<Row>
+			<Col size='md-4'>
 				<form>
-					<Col size='sm-12'>
+					<Col size='md-12'>
 						{/* <ForwardRefInput ref={titleInputElRef} 
 							value={formObject.body} 
 							onChange={handleInputChange} 
@@ -113,34 +145,7 @@ function Subscriptions({ username }) {
 				</form>
 			</Col>
 		</Row>,
-		<Row>
-			<Col size='md-12'>
-				{subscriptions.length ? (
-					<Table>
-						{subscriptions.map(subscription => (
-							<Tr key={subscription._id}>
-								<Td>
-									<Link
-										to={"/subscriptions/" + subscription._id}
-										style={{ textAlign: "left", display: "block" }}>
-										<strong>{subscription.username}:</strong> {subscription.subscriptionName} {subscription.paymentAmount} 
-									</Link>
-								</Td>
-								<Td>
-									{/* ADD DATE TO SUBSCRIPTION MODEL */}
-									{/* {subscription.date} */}
-								</Td>
-								<Td>
-									<DeleteBtn onClick={() => deleteSubscription(subscription._id)} />
-								</Td>
-							</Tr>
-						))}
-					</Table>
-				) : (
-						<h3>No Results to Display</h3>
-					)}
-			</Col>
-		</Row>,
+		<Row></Row>
 	</>;
 }
 
