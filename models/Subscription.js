@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const subscriptionSchema = new Schema({
-	username: { type: String, required: true },
-	subscriptionName: { type: String, required: true },
-	paymentAmount: { type: String, required: true },
+	username: { type: String, required: false },
+	subscriptionName: { type: String, required: false },
+	paymentAmount: { type: Number, required: false },
 
 });
 
