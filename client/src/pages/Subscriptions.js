@@ -15,7 +15,9 @@ function Subscriptions({ username }) {
 		// body: "",
 		subscriptionName: "",
 		paymentAmount: "",
-		username: username
+		username: username,
+		savedSubscription: ""
+		
 	});
 
 	// get input element ref for focus
@@ -48,6 +50,13 @@ function Subscriptions({ username }) {
 	// Deletes a subscription from the database with a given id, then reloads subscriptions from the db
 	function deleteSubscription(id) {
 		API.deleteSubscription(id)
+			.then((res) => loadSubscriptions())
+			.catch((err) => console.log(err));
+	}
+
+	function saveSubscription2(id) {
+		console.log(id)
+		API.saveSubscription2(id)
 			.then((res) => loadSubscriptions())
 			.catch((err) => console.log(err));
 	}
@@ -97,7 +106,7 @@ function Subscriptions({ username }) {
 										<strong>
 											{/* Commented out for now */}
 											{/* {subscription.username}: */}
-											</strong> {subscription.subscriptionName} {"    "} {subscription.paymentAmount} 
+											</strong> {subscription.subscriptionName} {"$"} {subscription.paymentAmount} 
 									</Link>
 								</Td>
 								<Td>
@@ -105,11 +114,11 @@ function Subscriptions({ username }) {
 									{/* {subscription.date} */}
 								</Td>
 								<Td>
-									<AddBtn onClick={() => deleteSubscription(subscription._id)} />
+									<AddBtn name='subscriptionName' value={formObject.subscriptionName} onClick={() => saveSubscription2(subscription.subscriptionName)} />
 								</Td>
-								<Td>
+								{/* <Td>
 									<DeleteBtn onClick={() => deleteSubscription(subscription._id)} />
-								</Td>
+								</Td> */}
 							</Tr>
 						))}
 					</Table>
@@ -135,16 +144,16 @@ function Subscriptions({ username }) {
 										<strong>
 											{/* Commented out for now */}
 											{/* {subscription.username}: */}
-											</strong> {subscription.subscriptionName} {"    "} {subscription.paymentAmount} 
+											</strong> {subscription.subscriptionName} {"$"} {subscription.paymentAmount} 
 									</Link>
 								</Td>
 								<Td>
 									{/* WE CAN ADD DATE TO SUBSCRIPTION MODEL */}
 									{/* {subscription.date} */}
 								</Td>
-								<Td>
+								{/* <Td>
 									<AddBtn onClick={() => deleteSubscription(subscription._id)} />
-								</Td>
+								</Td> */}
 								<Td>
 									<DeleteBtn onClick={() => deleteSubscription(subscription._id)} />
 								</Td>

@@ -16,5 +16,9 @@ export default {
   // Saves a subscription to the database
   saveSubscription: function(subscriptionData) {
     return axios.post("/api/subscriptions", subscriptionData);
-  }
+  },
+    // Saves a subscription to the database
+    saveSubscription2: function(subscriptionData) {
+      return axios.post("/api/subscriptions/", subscriptionData);
+    }
 };
