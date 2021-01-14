@@ -54,7 +54,7 @@ const subscriptionsSeeds = [{
     {
         username: "Admin",
         subscriptionName: "CBS All Access",
-        paymentAmount: "$5.99",
+        paymentAmount: 5.99,
         date: { type: Date, default: Date.now },
     },
     {
