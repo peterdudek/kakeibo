@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import DeleteBtn from "../components/DeleteBtn";
+import AddBtn from "../components/AddBtn";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row } from "../components/Grid";
@@ -104,6 +105,9 @@ function Subscriptions({ username }) {
 									{/* {subscription.date} */}
 								</Td>
 								<Td>
+									<AddBtn onClick={() => deleteSubscription(subscription._id)} />
+								</Td>
+								<Td>
 									<DeleteBtn onClick={() => deleteSubscription(subscription._id)} />
 								</Td>
 							</Tr>
@@ -113,10 +117,49 @@ function Subscriptions({ username }) {
 						<h3>No Results to Display</h3>
 					)}
 			</Col>
-		</Row>,
+
+			<Col size='md-2'>
+
+			</Col>
+			{/* USER SAVED SUBSCRIPTIONS */}
+			<Col size='md-4'>
+			<h4 style={{ textAlign: "center", display: "block" }}>My subscriptions</h4>
+				{subscriptions.length ? (
+					<Table>
+						{subscriptions.map(subscription => (
+							<Tr key={subscription._id}>
+								<Td>
+									<Link
+										to={"/subscriptions/" + subscription._id}
+										style={{ textAlign: "left", display: "block" }}>
+										<strong>
+											{/* Commented out for now */}
+											{/* {subscription.username}: */}
+											</strong> {subscription.subscriptionName} {"    "} {subscription.paymentAmount} 
+									</Link>
+								</Td>
+								<Td>
+									{/* WE CAN ADD DATE TO SUBSCRIPTION MODEL */}
+									{/* {subscription.date} */}
+								</Td>
+								<Td>
+									<AddBtn onClick={() => deleteSubscription(subscription._id)} />
+								</Td>
+								<Td>
+									<DeleteBtn onClick={() => deleteSubscription(subscription._id)} />
+								</Td>
+							</Tr>
+						))}
+					</Table>
+				) : (
+						<h3>No Results to Display</h3>
+					)}
+			</Col>
+		</Row>
+
 		<Row>
 			<Col size='md-4'>
-				<form>
+				<form className="marginTop">
 					<Col size='md-12'>
 						{/* <ForwardRefInput ref={titleInputElRef} 
 							value={formObject.body} 
@@ -140,7 +183,7 @@ function Subscriptions({ username }) {
 					<FormBtn
 						disabled={!formObject.subscriptionName && !formObject.paymentAmount}
 						onClick={handleFormSubmit}>
-						Submit Subscription
+						Add Subscription
 					</FormBtn>
 				</form>
 			</Col>

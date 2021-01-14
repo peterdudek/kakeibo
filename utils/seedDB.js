@@ -96,7 +96,7 @@ const subscriptionsSeeds = [{
 
 ];
 
-// remove all comments
+// remove all subscriptions
 // db.Comment.deleteMany({})
 db.Subscription.deleteMany({})
     // remove all users

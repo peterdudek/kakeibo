@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
-// import Comments from "./pages/Comments";
 import Subscriptions from "./pages/Subscriptions";
 import { Container } from "./components/Grid";
-// import Comment from "./pages/Comment";
 import Subscription from "./pages/Subscription";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import NoMatch from "./pages/NoMatch";
 import Head from "./components/Head";
+import Navbar from "./components/Navbar";
 import userAPI from "./utils/userAPI";
-import ProtectedRoute from "./components/ProtectedRoute"
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
 	const [userState, setUserState] = useState({});
@@ -32,6 +31,11 @@ function App() {
 
 	return (
 		<Router>
+			<Navbar 
+			// {...props}
+				username={userState.username}
+			// setUserState={setUserState}
+			/>
 			<Head />
 			<Container>
 				<Switch>
