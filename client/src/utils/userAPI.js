@@ -9,6 +9,10 @@ export default {
   },
   authenticateUser: function () {
     return axios.post("/api/user/authenticate/")
-  }
+  },
 
+  // added code by Peter
+  logout: function () {
+    return axios.post("/api/user/logout/")
+  }
 };

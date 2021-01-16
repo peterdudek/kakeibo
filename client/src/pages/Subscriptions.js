@@ -11,6 +11,8 @@ function Subscriptions({ username }) {
 	console.log(username)
 	// Setting our component's initial state
 	const [subscriptions, setSubscriptions] = useState([]);
+	const [userName, setUsername] = useState("")
+	const [userSubscriptions, setUserSubscriptions] = useState([]);
 	const [formObject, setFormObject] = useState({
 		// body: "",
 		subscriptionName: "",
@@ -45,6 +47,13 @@ function Subscriptions({ username }) {
 		API.getSubscriptions()
 			.then((res) => setSubscriptions(res.data))
 			.catch((err) => console.log(err));
+
+		API.getUserSubscriptions() 
+		.then((res) =>{ 
+			console.log(res.data)
+			setUsername(res.data[0].username)
+			setUserSubscriptions(res.data[0].subscription)})
+		.catch((err) => console.log(err));
 	}
 
 	// Deletes a subscription from the database with a given id, then reloads subscriptions from the db
@@ -54,9 +63,17 @@ function Subscriptions({ username }) {
 			.catch((err) => console.log(err));
 	}
 
-	function saveSubscription2(id) {
-		console.log(id)
-		API.saveSubscription2(id)
+	function saveSubscription(subscription) 
+	{
+	
+		console.log(subscription)
+		const newSubscription = {
+			paymentAmount: subscription.paymentAmount,
+			subscriptionName: subscription.subscriptionName,
+			username: username
+		}
+	
+		API.saveSubscription(newSubscription)
 			.then((res) => loadSubscriptions())
 			.catch((err) => console.log(err));
 	}
@@ -114,7 +131,7 @@ function Subscriptions({ username }) {
 									{/* {subscription.date} */}
 								</Td>
 								<Td>
-									<AddBtn name='subscriptionName' value={formObject.subscriptionName} onClick={() => saveSubscription2(subscription.subscriptionName)} />
+									<AddBtn name='subscriptionName' value={formObject.subscriptionName} onClick={() => saveSubscription(subscription)} />
 								</Td>
 								{/* <Td>
 									<DeleteBtn onClick={() => deleteSubscription(subscription._id)} />
@@ -133,13 +150,13 @@ function Subscriptions({ username }) {
 			{/* USER SAVED SUBSCRIPTIONS */}
 			<Col size='md-4'>
 			<h4 style={{ textAlign: "center", display: "block" }}>My subscriptions</h4>
-				{subscriptions.length ? (
+				{userSubscriptions.length ? (
 					<Table>
-						{subscriptions.map(subscription => (
+						{userSubscriptions.map(subscription => (
 							<Tr key={subscription._id}>
 								<Td>
 									<Link
-										to={"/subscriptions/" + subscription._id}
+										to={"/subscriptions/user" + subscription._id}
 										style={{ textAlign: "left", display: "block" }}>
 										<strong>
 											{/* Commented out for now */}

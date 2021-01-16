@@ -5,6 +5,10 @@ export default {
   getSubscriptions: function() {
     return axios.get("/api/subscriptions");
   },
+
+  getUserSubscriptions: function() {
+    return axios.get("/api/subscriptions/user");
+  },
   // Gets the subscription with the given id
   getSubscription: function(id) {
     return axios.get("/api/subscriptions/" + id);
@@ -18,7 +22,7 @@ export default {
     return axios.post("/api/subscriptions", subscriptionData);
   },
     // Saves a subscription to the database
-    saveSubscription2: function(subscriptionData) {
-      return axios.post("/api/subscriptions/", subscriptionData);
-    }
+    // saveSubscription2: function(subscriptionData) {
+    //   return axios.post("/api/subscriptions/", subscriptionData);
+    // }
 };

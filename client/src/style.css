@@ -48,12 +48,12 @@ a:hover {
 
 body {
   width: 100%;
-  background-color: #f2eecb;
-  color: rgb(2, 2, 37);
-
+  /* background-color: #f2eecb; */
+  /* color: rgb(2, 2, 37); */
   /* color: white; */
   margin: 0;
   padding: 0;
+  background-image: url("./img/paper.jpg");
 }
 
 #top-bar {

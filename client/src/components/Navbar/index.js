@@ -1,6 +1,16 @@
 import React from "react";
 import "./style.css";
 
+// import user API and add logout function
+import userAPI from "../../utils/userAPI";
+
+function logout() {
+  console.log("Logout btn was clicked!")
+  userAPI.logout();
+}
+
+
+
 function Navbar(props) {
 
   return (
@@ -15,6 +25,17 @@ function Navbar(props) {
             <li className="nav-item">
               <a className="nav-link active" aria-current="page" href="/">Home</a>
             </li>
+
+            {/* added Logout button */}
+            {props.username ?
+              <li className="nav-item">
+                <a className="nav-link active testButton" aria-current="page"
+                  href="/"
+                  onClick={() => logout()}
+                >Logout</a>
+              </li>
+              : <> </>
+            }
           </ul>
         </div>
       </div>
