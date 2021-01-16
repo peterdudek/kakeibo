@@ -17,7 +17,7 @@ router.route("/signup")
 // Matches with "/api/user/logout"
 router.route("/logout")
 	// Route for logging user out
-	.get(userController.logout);
+	.post(userController.logout);
 
 // Matches with "/api/user/authenticate"
 router.route("/authenticate")
