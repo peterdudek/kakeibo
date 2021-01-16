@@ -4,8 +4,20 @@ const db = require("../models");
 
 module.exports = {
   findAll: function (req, res) {
+    console.log(req.user)
     db.Subscription
-      .find(req.query)
+      .find({})
+      .sort({ date: -1 })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  findOne: function (req, res) {
+    console.log(req.user)
+    db.User
+      .find({
+        _id: req.user._id
+      })
+      .populate("subscription")
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
@@ -22,8 +34,8 @@ module.exports = {
     if (!req.user) return res.status(401).end('user isnt authenticated')
 
     db.Subscription
-      .create({ ...req.body, email: req.user.email })
-      .then(({ _id }) => db.User.findOneAndUpdate({ _id: req.user._id }, { $push: { subscriptions: _id } }, { new: true }))
+      .create(req.body)
+      .then(({ _id }) => db.User.findOneAndUpdate({ _id: req.user._id }, { $push: { subscription: _id } }, { new: true }))
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

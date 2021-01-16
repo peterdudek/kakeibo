@@ -34,6 +34,8 @@ function App() {
 			<Navbar 
 			// {...props}
 				username={userState.username}
+				// userState={userState}
+				// setUserState={setUserState}
 			// setUserState={setUserState}
 			/>
 			<Head />
@@ -70,7 +72,10 @@ function App() {
 					<Route component={NoMatch} />
 				</Switch>
 			</Container>
-			{ userState.email ? <Redirect to="/subscriptions" /> : <></>}
+			{ userState.email ? <Redirect to="/subscriptions" /> 
+			// added this code - Peter
+			: <Redirect to="/" />}
+
 		</Router>
 	);
 }

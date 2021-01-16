@@ -28,8 +28,18 @@ module.exports = {
 
    // to be implemented in the front end
    logout: function (req, res) {
-      req.logout();
-      res.redirect("/");
+      // req.logout();
+      // res.redirect("/");
+
+      return req.user
+      ? res.status(401).end("user isn't logged in")
+      // Otherwise send back the user's email and id
+      // Sending back a password, even a hashed password, isn't a good idea
+      : res.json({
+      })
+
+
+
    },
 
    authenticate: function (req, res) {
