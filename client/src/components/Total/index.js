@@ -1,42 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import "./style.css";
 
-
 function Total(props) {
-  // const [userState, setUserState] = useState({});
-  console.log(props.userSubscriptions[0]);
-  // let value;
+  // console.log("I am here: ", props.userSubscriptions);
+  let total = [];
 
-  // value = props.userSubscriptions[0].paymentAmount + props.userSubscriptions[1].paymentAmount
-  
+  for (let i = 0; i < props.userSubscriptions.length; i++) {
+    total.push(props.userSubscriptions[i].paymentAmount);
+  }
 
-  // const [subscriptions, setSubscriptions] = useState({
-  //   subscriptionName: props.userSubscriptions.subscriptionName,
-	// 	paymentAmount: props.userSubscriptions.paymentAmount,
-	// 	username: props.userSubscriptions.username,
+  total = total.reduce((a, b) => a + b, 0)
 
-  // });
-
-  // for(var i = 0; i < props.userSubscriptions; i++) {
-    
-  //   total.push(parseInt(props.userSubscriptions[i].paymentAmount))
-  // }
-  // console.log(total);
+  console.log("This is our grand total:", total)
 
   return (
     <>
-    <div className="card text-center text-light bg-dark m-3">
-      <div className="card-header text-left">
-        <strong>Your Total is: 
-          {/* {value} */}
+      <div className="card text-center text-light bg-dark m-3">
+        <div className="card-header text-left">
+          <strong>Your Total is:
+            {total}
           </strong>
-      </div>
-
-
-      <div className="card-body ">
-        {/* {props.children} */}
         </div>
-    </div>
+        {/* <div className="card-body "> */}
+        {/* {props.children} */}
+        {/* </div> */}
+      </div>
     </>
   );
 }
