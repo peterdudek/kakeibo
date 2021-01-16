@@ -7,19 +7,19 @@ import { Col, Row } from "../components/Grid";
 import { Table, Tr, Td } from "../components/Table";
 import { ForwardRefInput, FormBtn } from "../components/Form";
 
+import Total from "../components/Total";
+
 function Subscriptions({ username }) {
-	console.log(username)
+	// console.log(username)
 	// Setting our component's initial state
+	// const [showBtn, setShowBtn] = useState(true);
 	const [subscriptions, setSubscriptions] = useState([]);
-	const [userName, setUsername] = useState("")
+	const [userName, setUsername] = useState({});
 	const [userSubscriptions, setUserSubscriptions] = useState([]);
 	const [formObject, setFormObject] = useState({
-		// body: "",
 		subscriptionName: "",
 		paymentAmount: "",
 		username: username,
-		savedSubscription: ""
-		
 	});
 
 	// get input element ref for focus
@@ -29,52 +29,53 @@ function Subscriptions({ username }) {
 	useEffect(() => {
 		// set user after successful component mount
 		setFormObject({
-			// body: "",
 			subscriptionName: "",
 			paymentAmount: "",
 			username: username
 		})
 
 		loadSubscriptions();
+		loadUserSubscriptions();
 
 		// focus on titleInputEl if ref exists
 		titleInputElRef.current.focus()
 	}, [username]);
-
 
 	// Loads all subscriptions and sets them to subscriptions
 	function loadSubscriptions() {
 		API.getSubscriptions()
 			.then((res) => setSubscriptions(res.data))
 			.catch((err) => console.log(err));
-
-		API.getUserSubscriptions() 
-		.then((res) =>{ 
-			console.log(res.data)
-			setUsername(res.data[0].username)
-			setUserSubscriptions(res.data[0].subscription)})
-		.catch((err) => console.log(err));
 	}
+
+	function loadUserSubscriptions() {
+		API.getUserSubscriptions()
+			.then((res) => {
+				// console.log(res.data)
+				setUsername(res.data[0].username)
+				setUserSubscriptions(res.data[0].subscription)
+			})
+			.catch((err) => console.log(err));
+	}
+
 
 	// Deletes a subscription from the database with a given id, then reloads subscriptions from the db
 	function deleteSubscription(id) {
 		API.deleteSubscription(id)
-			.then((res) => loadSubscriptions())
+			.then((res) => loadUserSubscriptions())
 			.catch((err) => console.log(err));
 	}
 
-	function saveSubscription(subscription) 
-	{
-	
-		console.log(subscription)
+	function saveSubscription(subscription) {
+		// console.log(subscription)
 		const newSubscription = {
 			paymentAmount: subscription.paymentAmount,
 			subscriptionName: subscription.subscriptionName,
 			username: username
 		}
-	
+
 		API.saveSubscription(newSubscription)
-			.then((res) => loadSubscriptions())
+			.then((res) => loadUserSubscriptions())
 			.catch((err) => console.log(err));
 	}
 
@@ -88,18 +89,15 @@ function Subscriptions({ username }) {
 	// Then reload subscriptions from the database
 	function handleFormSubmit(event) {
 		event.preventDefault();
-		// if (formObject.body) {
-			if (formObject.subscriptionName && formObject.paymentAmount) {
+		if (formObject.subscriptionName && formObject.paymentAmount) {
 			API.saveSubscription({
-				// body: formObject.body,
 				subscriptionName: formObject.subscriptionName,
 				paymentAmount: formObject.paymentAmount,
 				username: formObject.username,
 			})
-			// the "loadSubscriptions below changed the color from blue to yellow when I switched it from loadComments" ???????
-				.then(loadSubscriptions)
+
+				.then(loadUserSubscriptions)
 				.then(() => setFormObject({
-					// body: "",
 					subscriptionName: "",
 					paymentAmount: "",
 					username: username
@@ -111,7 +109,7 @@ function Subscriptions({ username }) {
 	return <>
 		<Row>
 			<Col size='md-4'>
-			<h4 style={{ textAlign: "center", display: "block" }}>Most popular subscriptions</h4>
+				<h4 style={{ textAlign: "center", display: "block" }}>Most popular subscriptions</h4>
 				{subscriptions.length ? (
 					<Table>
 						{subscriptions.map(subscription => (
@@ -123,7 +121,7 @@ function Subscriptions({ username }) {
 										<strong>
 											{/* Commented out for now */}
 											{/* {subscription.username}: */}
-											</strong> {subscription.subscriptionName} {"$"} {subscription.paymentAmount} 
+										</strong> {subscription.subscriptionName} {"$"} {subscription.paymentAmount}
 									</Link>
 								</Td>
 								<Td>
@@ -131,11 +129,11 @@ function Subscriptions({ username }) {
 									{/* {subscription.date} */}
 								</Td>
 								<Td>
-									<AddBtn name='subscriptionName' value={formObject.subscriptionName} onClick={() => saveSubscription(subscription)} />
+									<AddBtn onClick={() => {
+										saveSubscription(subscription)
+									}
+									} />
 								</Td>
-								{/* <Td>
-									<DeleteBtn onClick={() => deleteSubscription(subscription._id)} />
-								</Td> */}
 							</Tr>
 						))}
 					</Table>
@@ -149,34 +147,37 @@ function Subscriptions({ username }) {
 			</Col>
 			{/* USER SAVED SUBSCRIPTIONS */}
 			<Col size='md-4'>
-			<h4 style={{ textAlign: "center", display: "block" }}>My subscriptions</h4>
+				<h4 style={{ textAlign: "center", display: "block" }}>My subscriptions</h4>
 				{userSubscriptions.length ? (
-					<Table>
-						{userSubscriptions.map(subscription => (
-							<Tr key={subscription._id}>
-								<Td>
-									<Link
-										to={"/subscriptions/user" + subscription._id}
-										style={{ textAlign: "left", display: "block" }}>
-										<strong>
-											{/* Commented out for now */}
-											{/* {subscription.username}: */}
-											</strong> {subscription.subscriptionName} {"$"} {subscription.paymentAmount} 
-									</Link>
-								</Td>
-								<Td>
-									{/* WE CAN ADD DATE TO SUBSCRIPTION MODEL */}
-									{/* {subscription.date} */}
-								</Td>
-								{/* <Td>
-									<AddBtn onClick={() => deleteSubscription(subscription._id)} />
-								</Td> */}
-								<Td>
-									<DeleteBtn onClick={() => deleteSubscription(subscription._id)} />
-								</Td>
-							</Tr>
-						))}
-					</Table>
+					<>
+						<Table>
+							{userSubscriptions.map(subscription => (
+								<Tr key={subscription._id}>
+									<Td>
+										<Link
+											to={"/subscriptions/user" + subscription._id}
+											style={{ textAlign: "left", display: "block" }}>
+											<strong>
+												{/* Commented out for now */}
+												{/* {subscription.username}: */}
+											</strong> {subscription.subscriptionName} {"$"} {subscription.paymentAmount}
+										</Link>
+									</Td>
+									<Td>
+										{/* WE CAN ADD DATE TO SUBSCRIPTION MODEL */}
+										{/* {subscription.date} */}
+									</Td>
+									<Td>
+										<DeleteBtn onClick={() => deleteSubscription(subscription._id)} />
+									</Td>
+								</Tr>
+							))}
+						</Table>
+						<Total
+							userSubscriptions={userSubscriptions}
+							username={username}
+						/>
+					</>
 				) : (
 						<h3>No Results to Display</h3>
 					)}
@@ -185,25 +186,19 @@ function Subscriptions({ username }) {
 
 		<Row>
 			<Col size='md-4'>
-				<form className="marginTop">
+				<form className="marginTopandBottom">
 					<Col size='md-12'>
-						{/* <ForwardRefInput ref={titleInputElRef} 
-							value={formObject.body} 
-							onChange={handleInputChange} 
-							name='body' 
-							placeholder='your subscription here' 
-						/> */}
-						<ForwardRefInput ref={titleInputElRef} 
-							value={formObject.subscriptionName} 
-							onChange={handleInputChange} 
-							name='subscriptionName' 
-							placeholder='your subscription name here' 
+						<ForwardRefInput ref={titleInputElRef}
+							value={formObject.subscriptionName}
+							onChange={handleInputChange}
+							name='subscriptionName'
+							placeholder='your subscription name here'
 						/>
-						<ForwardRefInput ref={titleInputElRef} 
-							value={formObject.paymentAmount} 
-							onChange={handleInputChange} 
-							name='paymentAmount' 
-							placeholder='your subscription payment amount here' 
+						<ForwardRefInput ref={titleInputElRef}
+							value={formObject.paymentAmount}
+							onChange={handleInputChange}
+							name='paymentAmount'
+							placeholder='your subscription payment amount here'
 						/>
 					</Col>
 					<FormBtn
@@ -212,9 +207,20 @@ function Subscriptions({ username }) {
 						Add Subscription
 					</FormBtn>
 				</form>
+				<Row></Row>
 			</Col>
-		</Row>,
-		<Row></Row>
+
+			<Col size='md-2'> </Col>
+
+
+			{/* USER'S TOTAL */}
+			{/* <Col size='md-4'>
+				<Total
+					userSubscriptions={userSubscriptions}
+					username={username}
+				/>
+			</Col> */}
+		</Row>
 	</>;
 }
 
