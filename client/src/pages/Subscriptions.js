@@ -7,6 +7,7 @@ import { Col, Row } from "../components/Grid";
 import { Table, Tr, Td } from "../components/Table";
 import { ForwardRefInput, FormBtn } from "../components/Form";
 import { Pie, Doughnut } from 'react-chartjs-2';
+import movieAPI from "../utils/movieAPI";
 
 import Total from "../components/Total";
 
@@ -95,6 +96,7 @@ function Subscriptions({ username }) {
 	// Then reload subscriptions from the database
 	function handleFormSubmit(event) {
 		event.preventDefault();
+		showMovie();
 		if (formObject.subscriptionName && formObject.paymentAmount) {
 			API.saveSubscription({
 				subscriptionName: formObject.subscriptionName,
@@ -109,6 +111,12 @@ function Subscriptions({ username }) {
 					username: username
 				}))
 				.catch((err) => console.log(err));
+
+				// movieAPI.findMovie()
+				// .then((res) => console.log(res))
+				// .catch((err) => console.log(err));
+				
+
 		}
 	}
 
@@ -138,6 +146,14 @@ function Subscriptions({ username }) {
 				data: userSubscriptions.map(subscription => (subscription.paymentAmount))
 			}
 		]
+	}
+
+	function showMovie() {
+
+
+		movieAPI.findMovie()
+			// .then((res) => console.log(res))
+			// .catch((err) => console.log(err));
 	}
 
 	return (
