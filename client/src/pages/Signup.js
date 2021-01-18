@@ -4,6 +4,7 @@ import userAPI from "../utils/userAPI";
 import { Redirect, Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, FormBtn } from "../components/Form";
+import logo from "../img/loading 3.gif";
 
 class Signup extends Component {
   state = {
@@ -87,6 +88,10 @@ class Signup extends Component {
                 <FormBtn> Login </FormBtn>
               </Link>
             </form>
+            <div>
+            <img alt="loading" src={logo} style={{height: 100}}/>
+            </div>
+            
           </Col>
 
         </Row>
