@@ -14,13 +14,16 @@ function logout() {
 
 function Navbar(props) {
 
+  // const logged = props.username;
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-white borderline">
       <div>
         <img alt="kakeibo-symbol" src={logoEl} height="50px" />
       </div>
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">Hi {props.username}</a>
+        {props.username &&
+        <a className="navbar-brand" href="/">Hi {props.username}</a>}
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -31,7 +34,8 @@ function Navbar(props) {
         <div className="collapse navbar-collapse d-flex" id="navbarNav">
           <ul className="navbar-nav ml-auto p-2 col-example">
             <li className="nav-item borders">
-              <a className="nav-link active" aria-current="page" href="/">Home</a>
+            {props.username &&
+              <a className="nav-link active" aria-current="page" href="/">Home</a>}
             </li>
 
             {/* added Logout button */}
