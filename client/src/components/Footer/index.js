@@ -6,7 +6,7 @@ function footer() {
 
   return (
     <div className="centerFooter">
-      <strong> Copyright © 2021 Managelogy Group. 
+      <strong> Copyright © 2021 Manageology Group. 
         <a className="dark" href="https://clearbit.com"> Logos provided by Clearbit</a>
 
       </strong>
