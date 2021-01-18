@@ -1,0 +1,13 @@
+.centerFooter {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+ul
+{
+    list-style-type: none;
+}
+
+.dark {
+  color: navy;
+}

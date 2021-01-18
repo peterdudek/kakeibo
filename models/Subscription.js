@@ -8,6 +8,9 @@ const subscriptionSchema = new Schema({
 
 });
 
+// subscriptionSchema.index({ username: 1, type: -1 });
+// subscriptionSchema.index({ username: 1, subscriptionName: 1, paymentAmount: 1 }, { unique: true });  
+
 const Subscription = mongoose.model("Subscription", subscriptionSchema);
 
 module.exports = Subscription;

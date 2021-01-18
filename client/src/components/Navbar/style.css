@@ -1,0 +1,23 @@
+.borders {
+  border: 1px solid gray;
+  border-radius: 15px;
+  margin-left: 10px;
+}
+
+.inner {
+  width: 70%;
+  margin: 0 auto;
+}
+
+/* .borderline {
+
+} */
+
+.button {
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}

@@ -75,6 +75,7 @@ function Subscriptions({ username }) {
 		}
 
 		API.saveSubscription(newSubscription)
+			// .createIndex( { username: 1 }, { unique: true } )
 			.then((res) => loadUserSubscriptions())
 			.catch((err) => console.log(err));
 	}
@@ -160,7 +161,7 @@ function Subscriptions({ username }) {
 											<strong>
 												{/* Commented out for now */}
 												{/* {subscription.username}: */}
-											</strong> {subscription.subscriptionName} {"$"} {subscription.paymentAmount}
+											</strong> {subscription.subscriptionName} {" $"} {subscription.paymentAmount}
 										</Link>
 									</Td>
 									<Td>
@@ -172,6 +173,10 @@ function Subscriptions({ username }) {
 									</Td>
 								</Tr>
 							))}
+							{/* <Total
+								userSubscriptions={userSubscriptions}
+								username={username}
+							/> */}
 						</Table>
 						<Total
 							userSubscriptions={userSubscriptions}
@@ -192,13 +197,13 @@ function Subscriptions({ username }) {
 							value={formObject.subscriptionName}
 							onChange={handleInputChange}
 							name='subscriptionName'
-							placeholder='your subscription name here'
+							placeholder='your subscription name'
 						/>
 						<ForwardRefInput ref={titleInputElRef}
 							value={formObject.paymentAmount}
 							onChange={handleInputChange}
 							name='paymentAmount'
-							placeholder='your subscription payment amount here'
+							placeholder='payment amount'
 						/>
 					</Col>
 					<FormBtn

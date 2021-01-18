@@ -1,3 +1,12 @@
 .tableRound {
   border-radius: 15px;
 }
+.scrollable {
+  height: 50vh;
+  overflow: auto;
+  border-radius: 15px;
+}
+
+table {
+  color: black;
+}
