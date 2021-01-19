@@ -25,7 +25,8 @@ const subscriptionsSeeds = [{
         username: "Admin",
         subscriptionName: "Netflix",
         paymentAmount: 8.99,
-        date: { type: Date, default: Date.now }
+        date: { type: Date, default: Date.now },
+        logo: "https://logo.clearbit.com/netflix.com"
     },
     {
         username: "Admin",

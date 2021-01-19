@@ -1,16 +1,26 @@
 import React from "react";
 import "./style.css";
 
+// const style = {
+// 	color: "black"
+// }
+
 export function Table({ children }) {
 	return (
 		<div 
+		// style={style} 
 		className="scrollable"
 		>
-		<table className=
-		"table table-dark table-striped border-top-0 text-center text-break tableRound"
-		// "table"
+		<table 
+		// style={style} 
+		className=
+		// "table table-dark table-striped border-top-0 text-center text-break tableRound"
+		"table"
 		>
-			<tbody className="border-top-0">
+			<tbody 
+			
+			// style={style} 
+			className="border-top-0">
 				{children}
 			</tbody>
 		</table>

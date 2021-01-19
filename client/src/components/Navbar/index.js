@@ -17,7 +17,7 @@ function Navbar(props) {
   // const logged = props.username;
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-white borderline">
+    <nav className="navbar navbar-expand-lg borderline">
       <div>
         <img alt="kakeibo-symbol" src={logoEl} height="50px" />
       </div>

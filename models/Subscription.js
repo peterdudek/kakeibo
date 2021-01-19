@@ -5,6 +5,7 @@ const subscriptionSchema = new Schema({
 	username: { type: String, required: true },
 	subscriptionName: { type: String, required: true },
 	paymentAmount: { type: Number, required: true },
+	logo: { type: String }
 
 });
 

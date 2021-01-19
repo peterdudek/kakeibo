@@ -7,10 +7,13 @@
   --footer-height: 52px;
 }
 /* stylelint-enable */
-a { color: white;}
-a:hover {
-  text-decoration: none;
+a { 
+  color: black;
+  font-weight: bold;
 }
+/* a:hover {
+  text-decoration: none;
+} */
 
 
 /* svg:hover {
