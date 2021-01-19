@@ -2,8 +2,13 @@
   border-radius: 15px;
 }
 
-.red {
+/* .red {
   color: white;
+} */
+
+.hidden {
+  color: black;
+  visibility: transparent;
 }
 
 /* .marginalTop {

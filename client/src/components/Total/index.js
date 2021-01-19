@@ -14,20 +14,13 @@ function Total(props) {
   // console.log("This is our grand total:", total);
 
   return (
-    // <>
-      <div className="card text-center text-light bg-dark tableRound">
-        <div className="card-header 
+    <div className="
         tableRound
+        hidden
         d-flex justify-content-between">
-          <div><strong>TOTAL: {" "}</strong></div>
-            <div><span className="red">${total}</span></div>
-          
-        </div>
-        {/* <div className="card-body "> */}
-        {/* {props.children} */}
-        {/* </div> */}
-      </div>
-    // </>
+      <div><strong>TOTAL: {" "}</strong></div>
+      <div><span>${total}</span></div>
+    </div>
   );
 }
 
