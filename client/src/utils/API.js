@@ -33,3 +33,6 @@ export default {
       return axios.put("/api/subscriptions/" + id, subscriptionData);
     },
 };
+
+  
+

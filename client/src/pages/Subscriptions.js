@@ -22,6 +22,7 @@ function Subscriptions({ username }) {
 		subscriptionName: "",
 		paymentAmount: "",
 		username: username,
+		//logo: `https://logo.clearbit.com/${subscriptionName}.com`,
 	});
 
 	// get input element ref for focus
@@ -33,7 +34,8 @@ function Subscriptions({ username }) {
 		setFormObject({
 			subscriptionName: "",
 			paymentAmount: "",
-			username: username
+			username: username,
+			//logo: `https://logo.clearbit.com/${subscriptionName}.com`,
 		})
 
 		loadSubscriptions();

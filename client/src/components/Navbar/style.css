@@ -21,3 +21,40 @@
   background-color: #4CAF50; /* Green */
   color: white;
 }
+
+/*neon button*/
+.nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 10vh;
+    background: #031628; 
+    
+    
+  }
+  
+  .nav-link {
+    color: #4cc9f0;
+    background-color: transparent;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 10px 20px;
+    font-weight: 300;
+  }
+  
+  .borders {
+    color: #4cc9f0;
+  }
+
+  .nav-link:hover {
+    color: white;
+    border: 0;
+  }
+  
+  .borders:hover {
+    background-color: #4cc9f0;
+    -webkit-box-shadow: 10px 10px 99px 6px rgba(76,201,240,1);
+    -moz-box-shadow: 10px 10px 99px 6px rgba(76,201,240,1);
+    box-shadow: 10px 10px 99px 6px rgba(76,201,240,1);
+  }
+  

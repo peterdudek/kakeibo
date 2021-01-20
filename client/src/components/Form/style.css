@@ -1,0 +1,36 @@
+
+  /*neon button*/
+#lighting {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 10vh;
+  background: #031628; 
+  
+}
+
+.btn {
+  
+  background-color: transparent;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 10px 20px;
+  font-weight: 300;
+}
+
+.one {
+  color: #4cc9f0;
+}
+
+.btn:hover {
+  color: white;
+  border: 0;
+}
+
+.one:hover {
+  background-color: #4cc9f0;
+  -webkit-box-shadow: 10px 10px 99px 6px rgba(76,201,240,1);
+  -moz-box-shadow: 10px 10px 99px 6px rgba(76,201,240,1);
+  box-shadow: 10px 10px 99px 6px rgba(76,201,240,1);
+}
+
