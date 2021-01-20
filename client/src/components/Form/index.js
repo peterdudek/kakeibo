@@ -1,4 +1,5 @@
 import React from "react";
+import "./style.css";
 
 // This file exports the Input, TextArea, and FormBtn components
 
@@ -27,11 +28,14 @@ export function TextArea(props) {
 
 export function FormBtn(props) {
 	return (
-		<button
+	
+			<button 
 			{...props}
 			style={{ marginLeft: 10 }}
-			className='btn btn-dark rounded-15'>
+			className='btn one btn-dark rounded-15'>
 			{props.children}
-		</button>
+			</button>
+		
+	
 	);
 }

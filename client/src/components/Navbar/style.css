@@ -30,10 +30,11 @@
     height: 10vh;
     background: #031628; 
     
+    
   }
   
   .nav-link {
-    
+    color: #4cc9f0;
     background-color: transparent;
     text-transform: uppercase;
     font-size: 14px;
