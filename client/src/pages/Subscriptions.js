@@ -20,6 +20,7 @@ function Subscriptions({ username }) {
 		subscriptionName: "",
 		paymentAmount: "",
 		username: username,
+		//logo: `https://logo.clearbit.com/${subscriptionName}.com`,
 	});
 
 	// get input element ref for focus
@@ -31,7 +32,8 @@ function Subscriptions({ username }) {
 		setFormObject({
 			subscriptionName: "",
 			paymentAmount: "",
-			username: username
+			username: username,
+			//logo: `https://logo.clearbit.com/${subscriptionName}.com`,
 		})
 
 		loadSubscriptions();
@@ -122,9 +124,11 @@ function Subscriptions({ username }) {
 											{/* Commented out for now */}
 											{/* {subscription.username}: */}
 										</strong> {subscription.subscriptionName} {"$"} {subscription.paymentAmount}
+										{/* <img src = {subscription.logo}></img> */}
 									</Link>
 								</Td>
 								<Td>
+									
 									{/* WE CAN ADD DATE TO SUBSCRIPTION MODEL */}
 									{/* {subscription.date} */}
 								</Td>
