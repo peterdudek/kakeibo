@@ -25,4 +25,11 @@ export default {
     // saveSubscription2: function(subscriptionData) {
     //   return axios.post("/api/subscriptions/", subscriptionData);
     // }
+    // getUserSubscription: function(id) {
+    //   return axios.get("/api/subscriptions/user/" + id);
+    // },
+
+    updateSubscription: function(id, subscriptionData) {
+      return axios.put("/api/subscriptions/" + id, subscriptionData);
+    },
 };

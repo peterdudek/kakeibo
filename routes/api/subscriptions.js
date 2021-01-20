@@ -5,8 +5,12 @@ const subscriptionsController = require("../../controllers/subscriptionsControll
 router.route("/")
   .get(subscriptionsController.findAll)
   .post(subscriptionsController.create);
-  router.route("/user")
+
+router.route("/user")
   .get(subscriptionsController.findOne)
+
+// router.route("/user/:id")
+//   .get(subscriptionsController.findById)
 
 // Matches with "/api/subscriptions/:id"
 router

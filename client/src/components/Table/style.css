@@ -2,9 +2,10 @@
   border-radius: 15px;
 }
 .scrollable {
-  height: 50vh;
+  height: 40vh;
   overflow: auto;
   border-radius: 15px;
+  border: 1px solid black;
 }
 
 table {
