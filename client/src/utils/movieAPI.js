@@ -1,10 +1,12 @@
 import axios from "axios";
 
+// API "WHERE TO WATCH"
+
 export default {
 
 
   findMovie: function () {
-
+  // this API will show what streaming services have the desired movie or tv show 
     const options = {
       method: 'POST',
       url: 'https://watch-here.p.rapidapi.com/wheretowatch',

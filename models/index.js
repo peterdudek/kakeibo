@@ -1,5 +1,6 @@
 
 module.exports = {
   User: require("./User"),
-  Subscription: require("./Subscription")
+  Subscription: require("./Subscription"),
+  Show: require("./Show")
 };

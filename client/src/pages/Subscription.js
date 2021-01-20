@@ -5,6 +5,7 @@ import Card from "../components/Card";
 import API from "../utils/API";
 import back from "../img/backarrow.png";
 import { ForwardRefInput, FormBtn } from "../components/Form";
+import streamingAPI from "../utils/streamingAPI";
 
 function Subscription() {
   const [subscription, setSubscription] = useState({});
@@ -70,7 +71,9 @@ function Subscription() {
 					paymentAmount: "",
 					// username: username
         }))
-				.catch((err) => console.log(err));
+        .catch((err) => console.log(err));
+        
+        alert("Your subscription price will be updated momentarily")
 		}
 	}
 
