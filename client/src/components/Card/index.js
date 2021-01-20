@@ -12,7 +12,7 @@ function Card(props) {
         {/* <strong>{props.heading}: </strong> */}
       </div>
       <div className="text-center">
-        <img src={`https://logo.clearbit.com/${props.subscription.subscriptionName}.com` || {placeholder}} alt="company-logo"/>
+        <img src={props.subscription.logo} alt="company-logo" className="thumb"/>
         {/* {props.children} */}
         
         

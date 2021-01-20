@@ -131,9 +131,9 @@ h1 {
   text-align: center;
 }
 
-/* .centeredLoad {
+.centeredLoad {
   text-align: center;
-} */
+}
 
 
 /* .centerRow {
@@ -148,3 +148,23 @@ h1 {
   margin-right: -4px;
   } */
 
+.signupMargin {
+  margin-top: 50px;
+}
+
+.signupMargin2 {
+  margin-bottom: 50px;
+}
+
+/* html, body, #app, #app>div {
+  height: 100%
+} */
+
+.thumb {
+  border-radius: 15px;
+  /* margin-left: 15px; */
+}
+
+/* .texty {
+  text-align: left;
+} */
