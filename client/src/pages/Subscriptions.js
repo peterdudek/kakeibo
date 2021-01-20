@@ -71,16 +71,14 @@ function Subscriptions({ username }) {
 	}
 
 	function saveSubscription(subscription) {
-
-
-
 		// console.log(subscription)
 		const newSubscription = {
 			paymentAmount: subscription.paymentAmount,
 			subscriptionName: subscription.subscriptionName,
-			username: username
-		}
+			username: username,
+			logo: subscription.logo
 
+		}
 
 		API.saveSubscription(newSubscription)
 			// .createIndex( { username: 1 }, { unique: true } )
@@ -104,6 +102,7 @@ function Subscriptions({ username }) {
 				subscriptionName: formObject.subscriptionName,
 				paymentAmount: formObject.paymentAmount,
 				username: formObject.username,
+				logo: "https://logo.clearbit.com/" + formObject.subscriptionName + ".com"
 			})
 
 				.then(loadUserSubscriptions)
@@ -113,12 +112,6 @@ function Subscriptions({ username }) {
 					username: username
 				}))
 				.catch((err) => console.log(err));
-
-				// movieAPI.findMovie()
-				// .then((res) => console.log(res))
-				// .catch((err) => console.log(err));
-				
-
 		}
 	}
 
@@ -151,18 +144,16 @@ function Subscriptions({ username }) {
 	}
 
 	function showMovie() {
-
-
 		movieAPI.findMovie()
-			// .then((res) => console.log(res))
-			// .catch((err) => console.log(err));
+		// .then((res) => console.log(res))
+		// .catch((err) => console.log(err));
 	}
 
 	return (
 		<>
 			<Row>
 				<Col size='md-4'>
-					<h4 style={{ textAlign: "center", display: "block" }}>Most popular subscriptions</h4>
+					<h4 style={{ textAlign: "center", display: "block" }}><strong>Trending subscriptions</strong></h4>
 					{subscriptions.length ? (
 						<Table>
 							{subscriptions.map(subscription => (
@@ -170,17 +161,22 @@ function Subscriptions({ username }) {
 									<Td>
 										<Link
 											to={"/subscriptions/" + subscription._id}
-											style={{ textAlign: "left", display: "block" }}>
-											<strong>
-												{/* Commented out for now */}
-												{/* {subscription.username}: */}
-											</strong> {subscription.subscriptionName} {"$"} {subscription.paymentAmount}
+											style={{ textAlign: "left", display: "block" }}
+										>
+											<div
+												className="d-flex"
+											// className="row justify-content-between"
+											>
+												<div className="p-2">
+													<img className="thumb" alt={subscription.subscriptionName} src={subscription.logo} height="30px" />
+												</div>
+												<div className="p-2">{subscription.subscriptionName}</div>
+												<div className="ml-auto p-2">{" $"}{subscription.paymentAmount}</div>
+											</div>
+
 										</Link>
 									</Td>
-									<Td>
-										{/* WE CAN ADD DATE TO SUBSCRIPTION MODEL */}
-										{/* {subscription.date} */}
-									</Td>
+
 									<Td>
 										<AddBtn onClick={() => {
 											saveSubscription(subscription)
@@ -199,7 +195,7 @@ function Subscriptions({ username }) {
 
 				{/* USER SAVED SUBSCRIPTIONS */}
 				<Col size='md-4'>
-					<h4 style={{ textAlign: "center", display: "block" }}>My subscriptions</h4>
+					<h4 style={{ textAlign: "center", display: "block" }}><strong>My subscriptions</strong></h4>
 					{userSubscriptions.length ? (
 						<>
 							<Table>
@@ -207,27 +203,30 @@ function Subscriptions({ username }) {
 									<Tr key={subscription._id}>
 										<Td>
 											<Link
-												to={"/subscriptions/user" + subscription._id}
+												to={"/subscriptions/" + subscription._id}
 												style={{ textAlign: "left", display: "block" }}>
-												<strong>
-													{/* Commented out for now */}
-													{/* {subscription.username}: */}
-												</strong> {subscription.subscriptionName} {" $"} {subscription.paymentAmount}
+
+												<div
+													className="d-flex"
+												// className="row justify-content-between"
+												>
+													<div className="p-2">
+														<img className="thumb" alt={subscription.subscriptionName} src={subscription.logo} height="30px" />
+													</div>
+													<div className="p-2">{subscription.subscriptionName}</div>
+													<div className="ml-auto p-2">{" $"}{subscription.paymentAmount}</div>
+												</div>
+
 											</Link>
 										</Td>
 										<Td>
-											{/* WE CAN ADD DATE TO SUBSCRIPTION MODEL */}
-											{/* {subscription.date} */}
+
 										</Td>
 										<Td>
 											<DeleteBtn onClick={() => deleteSubscription(subscription._id)} />
 										</Td>
 									</Tr>
 								))}
-								{/* <Total
-								userSubscriptions={userSubscriptions}
-								username={username}
-							/> */}
 							</Table>
 							<Total
 								userSubscriptions={userSubscriptions}
@@ -266,9 +265,9 @@ function Subscriptions({ username }) {
 					<Row></Row>
 				</Col>
 
-				<Col size='md-4'> </Col>
+				<Col size='md-2'> </Col>
 
-				<Col size='md-4'>
+				<Col size='md-6'>
 					<div>
 						{/* <Pie
           data={state}

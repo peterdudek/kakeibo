@@ -25,30 +25,13 @@ export default {
     // saveSubscription2: function(subscriptionData) {
     //   return axios.post("/api/subscriptions/", subscriptionData);
     // }
+    // getUserSubscription: function(id) {
+    //   return axios.get("/api/subscriptions/user/" + id);
+    // },
 
-  
-  // retrieve API logo
-  // requestLogo: function (subscriptionName) {
-  //   return axios.get(`https://logo.clearbit.com/${subscriptionName}`);
-  // },
-
-  // // Saves Logo to the DB
-  // saveLogo: function (LogoData) {
-  //   return axios.post("/api/Logos", LogoData);
-  // },
-  // // Gets saved Logos from DB
-  // getLogos: function () {
-  //   return axios.get("/api/Logos");
-  // },
-  // // Gets Logo with the given ID
-  // getLogo: function (id) {
-  //   return axios.get("/api/Logos/" + id);
-  // },
-  // // Deletes Logo with the given ID
-  // deleteLogo: function (id) {
-  //   return axios.delete("/api/Logos/" + id);
-  // }
-
+    updateSubscription: function(id, subscriptionData) {
+      return axios.put("/api/subscriptions/" + id, subscriptionData);
+    },
 };
 
   

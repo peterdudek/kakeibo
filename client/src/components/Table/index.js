@@ -15,7 +15,7 @@ export function Table({ children }) {
 		// style={style} 
 		className=
 		// "table table-dark table-striped border-top-0 text-center text-break tableRound"
-		"table"
+		"table table-striped"
 		>
 			<tbody 
 			
