@@ -21,12 +21,10 @@ function Subscription() {
       <Row>
         <Col size="md-10 md-offset-1">
           <article>
-            <Card heading={subscription.username}>
-              {/* {subscription.body} */}
-              {subscription.subscriptionName}
-              {subscription.paymentAmount}
-              
-            </Card>
+            <Card 
+            subscription={subscription}
+            />
+
           </article>
         </Col>
       </Row>

@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { Col, Row } from "../components/Grid";
 import { Table, Tr, Td } from "../components/Table";
 import { ForwardRefInput, FormBtn } from "../components/Form";
+import { Pie, Doughnut } from 'react-chartjs-2';
+import movieAPI from "../utils/movieAPI";
 
 import Total from "../components/Total";
 
@@ -69,6 +71,9 @@ function Subscriptions({ username }) {
 	}
 
 	function saveSubscription(subscription) {
+
+
+
 		// console.log(subscription)
 		const newSubscription = {
 			paymentAmount: subscription.paymentAmount,
@@ -76,7 +81,9 @@ function Subscriptions({ username }) {
 			username: username
 		}
 
+
 		API.saveSubscription(newSubscription)
+			// .createIndex( { username: 1 }, { unique: true } )
 			.then((res) => loadUserSubscriptions())
 			.catch((err) => console.log(err));
 	}
@@ -91,6 +98,7 @@ function Subscriptions({ username }) {
 	// Then reload subscriptions from the database
 	function handleFormSubmit(event) {
 		event.preventDefault();
+		showMovie();
 		if (formObject.subscriptionName && formObject.paymentAmount) {
 			API.saveSubscription({
 				subscriptionName: formObject.subscriptionName,
@@ -105,61 +113,63 @@ function Subscriptions({ username }) {
 					username: username
 				}))
 				.catch((err) => console.log(err));
+
+				// movieAPI.findMovie()
+				// .then((res) => console.log(res))
+				// .catch((err) => console.log(err));
+				
+
 		}
 	}
 
-	return <>
-		<Row>
-			<Col size='md-4'>
-				<h4 style={{ textAlign: "center", display: "block" }}>Most popular subscriptions</h4>
-				{subscriptions.length ? (
-					<Table>
-						{subscriptions.map(subscription => (
-							<Tr key={subscription._id}>
-								<Td>
-									<Link
-										to={"/subscriptions/" + subscription._id}
-										style={{ textAlign: "left", display: "block" }}>
-										<strong>
-											{/* Commented out for now */}
-											{/* {subscription.username}: */}
-										</strong> {subscription.subscriptionName} {"$"} {subscription.paymentAmount}
-										{/* <img src = {subscription.logo}></img> */}
-									</Link>
-								</Td>
-								<Td>
-									
-									{/* WE CAN ADD DATE TO SUBSCRIPTION MODEL */}
-									{/* {subscription.date} */}
-								</Td>
-								<Td>
-									<AddBtn onClick={() => {
-										saveSubscription(subscription)
-									}
-									} />
-								</Td>
-							</Tr>
-						))}
-					</Table>
-				) : (
-						<h3>No Results to Display</h3>
-					)}
-			</Col>
 
-			<Col size='md-2'>
+	// var randomColor = Math.floor(Math.random() * 16777215).toString(16);
+	const pieState = {
 
-			</Col>
-			{/* USER SAVED SUBSCRIPTIONS */}
-			<Col size='md-4'>
-				<h4 style={{ textAlign: "center", display: "block" }}>My subscriptions</h4>
-				{userSubscriptions.length ? (
-					<>
+		labels: userSubscriptions.map(subscription => (subscription.subscriptionName)),
+		datasets: [
+			{
+				label: 'Subscription Cost',
+				backgroundColor: [
+					'#B21F00',
+					'#C9DE00',
+					'#2FDE00',
+					'#00A6B4',
+					'#6800B4'
+				],
+				// userSubscriptions.map(subscription => ("#" + Math.floor(Math.random() * 16777215).toString(16)))
+				hoverBackgroundColor: [
+					'#501800',
+					'#4B5000',
+					'#175000',
+					'#003350',
+					'#35014F'
+				],
+				data: userSubscriptions.map(subscription => (subscription.paymentAmount))
+			}
+		]
+	}
+
+	function showMovie() {
+
+
+		movieAPI.findMovie()
+			// .then((res) => console.log(res))
+			// .catch((err) => console.log(err));
+	}
+
+	return (
+		<>
+			<Row>
+				<Col size='md-4'>
+					<h4 style={{ textAlign: "center", display: "block" }}>Most popular subscriptions</h4>
+					{subscriptions.length ? (
 						<Table>
-							{userSubscriptions.map(subscription => (
+							{subscriptions.map(subscription => (
 								<Tr key={subscription._id}>
 									<Td>
 										<Link
-											to={"/subscriptions/user" + subscription._id}
+											to={"/subscriptions/" + subscription._id}
 											style={{ textAlign: "left", display: "block" }}>
 											<strong>
 												{/* Commented out for now */}
@@ -172,60 +182,130 @@ function Subscriptions({ username }) {
 										{/* {subscription.date} */}
 									</Td>
 									<Td>
-										<DeleteBtn onClick={() => deleteSubscription(subscription._id)} />
+										<AddBtn onClick={() => {
+											saveSubscription(subscription)
+										}
+										} />
 									</Td>
 								</Tr>
 							))}
 						</Table>
-						<Total
-							userSubscriptions={userSubscriptions}
-							username={username}
-						/>
-					</>
-				) : (
-						<h3>No Results to Display</h3>
-					)}
-			</Col>
-		</Row>
+					) : (
+							<h4>Nothing to Display. Start streaming!</h4>
+						)}
+				</Col>
 
-		<Row>
-			<Col size='md-4'>
-				<form className="marginTopandBottom">
-					<Col size='md-12'>
-						<ForwardRefInput ref={titleInputElRef}
-							value={formObject.subscriptionName}
-							onChange={handleInputChange}
-							name='subscriptionName'
-							placeholder='your subscription name here'
-						/>
-						<ForwardRefInput ref={titleInputElRef}
-							value={formObject.paymentAmount}
-							onChange={handleInputChange}
-							name='paymentAmount'
-							placeholder='your subscription payment amount here'
-						/>
-					</Col>
-					<FormBtn
-						disabled={!formObject.subscriptionName && !formObject.paymentAmount}
-						onClick={handleFormSubmit}>
-						Add Subscription
+				<Col size='md-4'></Col>
+
+				{/* USER SAVED SUBSCRIPTIONS */}
+				<Col size='md-4'>
+					<h4 style={{ textAlign: "center", display: "block" }}>My subscriptions</h4>
+					{userSubscriptions.length ? (
+						<>
+							<Table>
+								{userSubscriptions.map(subscription => (
+									<Tr key={subscription._id}>
+										<Td>
+											<Link
+												to={"/subscriptions/user" + subscription._id}
+												style={{ textAlign: "left", display: "block" }}>
+												<strong>
+													{/* Commented out for now */}
+													{/* {subscription.username}: */}
+												</strong> {subscription.subscriptionName} {" $"} {subscription.paymentAmount}
+											</Link>
+										</Td>
+										<Td>
+											{/* WE CAN ADD DATE TO SUBSCRIPTION MODEL */}
+											{/* {subscription.date} */}
+										</Td>
+										<Td>
+											<DeleteBtn onClick={() => deleteSubscription(subscription._id)} />
+										</Td>
+									</Tr>
+								))}
+								{/* <Total
+								userSubscriptions={userSubscriptions}
+								username={username}
+							/> */}
+							</Table>
+							<Total
+								userSubscriptions={userSubscriptions}
+								username={username}
+							/>
+						</>
+					) : (
+							<h4>Nothing to Display. Start streaming!</h4>
+						)}
+				</Col>
+			</Row>
+
+			<Row>
+				<Col size='md-4'>
+					<form className="marginTopandBottom">
+						<Col size='md-12'>
+							<ForwardRefInput ref={titleInputElRef}
+								value={formObject.subscriptionName}
+								onChange={handleInputChange}
+								name='subscriptionName'
+								placeholder='your subscription name'
+							/>
+							<ForwardRefInput ref={titleInputElRef}
+								value={formObject.paymentAmount}
+								onChange={handleInputChange}
+								name='paymentAmount'
+								placeholder='payment amount'
+							/>
+						</Col>
+						<FormBtn
+							disabled={!formObject.subscriptionName && !formObject.paymentAmount}
+							onClick={handleFormSubmit}>
+							Add Subscription
 					</FormBtn>
-				</form>
-				<Row></Row>
-			</Col>
+					</form>
+					<Row></Row>
+				</Col>
 
-			<Col size='md-2'> </Col>
+				<Col size='md-4'> </Col>
 
+				<Col size='md-4'>
+					<div>
+						{/* <Pie
+          data={state}
+          options={{
+            title:{
+              display:true,
+              text:'Average Rainfall per month',
+              fontSize:20
+            },
+            legend:{
+              display:true,
+              position:'right'
+            }
+          }}
+        /> */}
 
-			{/* USER'S TOTAL */}
-			{/* <Col size='md-4'>
-				<Total
-					userSubscriptions={userSubscriptions}
-					username={username}
-				/>
-			</Col> */}
-		</Row>
-	</>;
+						<Doughnut
+							data={pieState}
+							options={{
+								title: {
+									display: true,
+									text: 'Average Subscription cost/month',
+									fontSize: 20
+								},
+								legend: {
+									display: true,
+									position: 'right'
+								}
+							}}
+						/>
+					</div>
+
+				</Col>
+			</Row>
+
+		</>
+	);
 }
 
 export default Subscriptions;

@@ -6,10 +6,11 @@ import Subscription from "./pages/Subscription";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import NoMatch from "./pages/NoMatch";
-import Head from "./components/Head";
+// import Head from "./components/Head";
 import Navbar from "./components/Navbar";
 import userAPI from "./utils/userAPI";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Footer from "./components/Footer";
 
 function App() {
 	const [userState, setUserState] = useState({});
@@ -31,14 +32,14 @@ function App() {
 
 	return (
 		<Router>
-			<Navbar 
-			// {...props}
+			<Navbar
+				// {...props}
 				username={userState.username}
-				// userState={userState}
-				// setUserState={setUserState}
+			// userState={userState}
+			// setUserState={setUserState}
 			// setUserState={setUserState}
 			/>
-			<Head />
+			{/* <Head /> */}
 			<Container>
 				<Switch>
 					<Route
@@ -72,10 +73,10 @@ function App() {
 					<Route component={NoMatch} />
 				</Switch>
 			</Container>
-			{ userState.email ? <Redirect to="/subscriptions" /> 
-			// added this code - Peter
-			: <Redirect to="/" />}
-
+			{ userState.email ? <Redirect to="/subscriptions" />
+				// added this code - Peter
+				: <Redirect to="/" />}
+			<Footer />
 		</Router>
 	);
 }

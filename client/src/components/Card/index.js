@@ -1,12 +1,23 @@
 import React from "react";
 
+import placeholder from "../../img/IMG_1844.PNG";
+import back from "../../img/backarrow.png";
+
 function Card(props) {
+  console.log("Yooo!: ", props.subscription.subscriptionName);
   return (
-    <div className="card text-center text-light bg-dark m-3">
-      <div className="card-header text-left">
-        <strong>{props.heading}: </strong>
+    <div>
+      <div className="text-center">
+      {props.subscription.subscriptionName}
+        {/* <strong>{props.heading}: </strong> */}
       </div>
-      <div className="card-body ">{props.children}</div>
+      <div className="text-center">
+        <img src={`https://logo.clearbit.com/${props.subscription.subscriptionName}.com` || {placeholder}} alt="company-logo"/>
+        {/* {props.children} */}
+        
+        
+        </div>
+        <p className="text-center">Cost per month: ${props.subscription.paymentAmount}</p>
     </div>
   );
 }

@@ -4,13 +4,17 @@ import userAPI from "../utils/userAPI";
 import { Redirect, Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, FormBtn } from "../components/Form";
+import logo from "../img/loading 3.gif";
+// import remote from "../img/remote.gif";
+// import tv from "../img/tv.gif";
 
 class Signup extends Component {
   state = {
     email: "",
     username: "",
     password: "",
-    passwordConf: ""
+    passwordConf: "",
+    loading: false
   };
 
   componentDidMount() {
@@ -25,6 +29,7 @@ class Signup extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
+    this.setState({loading: true});
     if (this.state.email && this.state.password) {
       userAPI.signup({
         username: this.state.username,
@@ -35,7 +40,9 @@ class Signup extends Component {
       })
         .then(res => {
           if (res.status === 200) {
+            this.setState({loading: false});
             this.props.authenticate();
+
             return <Redirect to="/subscriptions" />
           }
         })
@@ -87,6 +94,11 @@ class Signup extends Component {
                 <FormBtn> Login </FormBtn>
               </Link>
             </form>
+            <div>
+            {this.state.loading ? <center><img alt="loading" className="centeredLoad" src={logo} style={{height: 100}}/></center> : <></>}
+            {/* <img alt="loading" src={logo} style={{height: 100}}/> */}
+            </div>
+            
           </Col>
 
         </Row>

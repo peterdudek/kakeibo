@@ -1,0 +1,16 @@
+.tableRound {
+  border-radius: 15px;
+}
+
+/* .red {
+  color: white;
+} */
+
+.hidden {
+  color: black;
+  visibility: transparent;
+}
+
+/* .marginalTop {
+  margin-top: 50px;
+} */
