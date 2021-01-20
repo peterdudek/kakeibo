@@ -22,15 +22,9 @@ function Subscription() {
         <Col size="md-10 md-offset-1">
           <article>
             <Card 
-            logo={subscription.logo}
-            // heading={subscription.username}
-            
+            subscription={subscription}
             />
-              {/* {subscription.body} */}
-              {/* {subscription.subscriptionName}
-              {subscription.paymentAmount} */}
-              
-            {/* </Card> */}
+
           </article>
         </Col>
       </Row>

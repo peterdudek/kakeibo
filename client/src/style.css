@@ -126,3 +126,25 @@ body {
   margin-top: 50px;
   margin-bottom: 50px;
 }
+
+h1 {
+  text-align: center;
+}
+
+/* .centeredLoad {
+  text-align: center;
+} */
+
+
+/* .centerRow {
+  text-align: center;
+
+}
+
+.col-centered {
+  display: inline-block;
+  float: none;
+  text-align: left;
+  margin-right: -4px;
+  } */
+
