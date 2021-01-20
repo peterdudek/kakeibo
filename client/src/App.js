@@ -6,7 +6,7 @@ import Subscription from "./pages/Subscription";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import NoMatch from "./pages/NoMatch";
-import Head from "./components/Head";
+// import Head from "./components/Head";
 import Navbar from "./components/Navbar";
 import userAPI from "./utils/userAPI";
 import ProtectedRoute from "./components/ProtectedRoute";
