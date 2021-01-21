@@ -8,6 +8,7 @@ import { Table, Tr, Td } from "../components/Table";
 import { ForwardRefInput, FormBtn } from "../components/Form";
 import { Pie, Doughnut } from 'react-chartjs-2';
 import movieAPI from "../utils/movieAPI";
+import plus from "../img/plus.png";
 
 import Total from "../components/Total";
 
@@ -96,6 +97,7 @@ function Subscriptions({ username }) {
 	// Then reload subscriptions from the database
 	function handleFormSubmit(event) {
 		event.preventDefault();
+		// API call result - "Where Watch"
 		showMovie();
 		if (formObject.subscriptionName && formObject.paymentAmount) {
 			API.saveSubscription({
@@ -241,27 +243,39 @@ function Subscriptions({ username }) {
 
 			<Row>
 				<Col size='md-4'>
+
+
 					<form className="marginTopandBottom">
-						<Col size='md-12'>
+						<Row>
+						<Col size='md-5'>
 							<ForwardRefInput ref={titleInputElRef}
 								value={formObject.subscriptionName}
 								onChange={handleInputChange}
 								name='subscriptionName'
-								placeholder='your subscription name'
+								placeholder='Your subscription'
 							/>
+							</Col>
+							<Col size='md-5'>
 							<ForwardRefInput ref={titleInputElRef}
 								value={formObject.paymentAmount}
 								onChange={handleInputChange}
 								name='paymentAmount'
-								placeholder='payment amount'
+								placeholder='Payment'
 							/>
 						</Col>
+						<Col size='md-2'>
 						<FormBtn
 							disabled={!formObject.subscriptionName && !formObject.paymentAmount}
 							onClick={handleFormSubmit}>
-							Add Subscription
+							{/* Add Subscription */}
+							<img src={plus} alt="plus-sign" height="20px"/>
 					</FormBtn>
+					</Col>
+					</Row>
 					</form>
+
+
+
 					<Row></Row>
 				</Col>
 
@@ -289,8 +303,9 @@ function Subscriptions({ username }) {
 							options={{
 								title: {
 									display: true,
-									text: 'Average Subscription cost/month',
-									fontSize: 20
+									text: 'Average cost/month',
+									fontSize: 20,
+									fontFamily: 'Roboto'
 								},
 								legend: {
 									display: true,

@@ -15,6 +15,10 @@ const userSeed = {
     password: "1"
 };
 
+const showSeed = {
+    showName: "Sample Name of a Show"
+};
+
 // username: { type: String, required: true },
 // 	subscriptionName: { type: String, required: true },
 // 	paymentAmount: { type: Number, required: true },
@@ -124,6 +128,9 @@ db.Subscription.deleteMany({})
     //     // add comment ref to user
     //     .then(({ _id }) => db.User.findOneAndUpdate({ _id: user._id }, { $push: { subscriptions: _id } }, { new: true }))
     // )
+
+    .then(() => db.Show.create(showSeed))
+
     .then(() => {
         process.exit(0);
     })

@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import logoEl from "../../img/IMG_1844.PNG";
+import logoEl from "../../img/IMG_18441.png";
 
 // import user API and add logout function
 import userAPI from "../../utils/userAPI";
@@ -19,7 +19,7 @@ function Navbar(props) {
   return (
     <nav className="navbar navbar-expand-lg borderline">
       <div>
-        <img alt="kakeibo-symbol" src={logoEl} height="50px" />
+        <img className="roundy" alt="kakeibo-symbol" src={logoEl} height="50px" />
       </div>
       <div className="container-fluid">
         {props.username &&

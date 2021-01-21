@@ -32,6 +32,10 @@ export default {
     updateSubscription: function(id, subscriptionData) {
       return axios.put("/api/subscriptions/" + id, subscriptionData);
     },
+
+    findShows: function() {
+      return axios.get("/api/shows");
+    },
 };
 
   
