@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import logoEl from "../../img/IMG_1844.PNG";
+import logoEl from "../../img/logo.png";
 
 // import user API and add logout function
 import userAPI from "../../utils/userAPI";
