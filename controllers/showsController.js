@@ -1,10 +1,11 @@
 const db = require("../models");
+const axios = require("axios");
 
 // Defining methods for the subscriptionsController
 
 module.exports = {
   findAll: function (req, res) {
-
+    console.log("Helloo!!!!")
     const options = {
       method: 'GET',
       url: 'https://streaming-availability.p.rapidapi.com/search/basic',
@@ -24,19 +25,20 @@ module.exports = {
     
     axios.request(options).then(function (response) {
   
-      console.log(response.data.results[0].originalTitle);
+      console.log(response);
       // return (response.data.results[0].originalTitle);
+      res.json(response.data)
+
       
     }).catch(function (error) {
       console.error(error);
     });
 
-
     console.log(req.user)
-    db.Show
-      .find({})
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+    // db.Show
+    //   .find({})
+    //   .then(dbModel => res.json(dbModel))
+    //   .catch(err => res.status(422).json(err));
   },
 
   // findOne: function (req, res) {
