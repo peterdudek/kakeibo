@@ -23,8 +23,12 @@ function Card(props) {
     //   .then((res) => setShow(res.data))
     //   .catch((err) => console.log(err));
 
-      API.findShows()
-      .then((res) => setShow(res.data))
+    API.findShows()
+      .then((res) => {
+        console.log(res)
+        setShow(res.data.results)
+      }
+      )
       .catch((err) => console.log(err));
 
 
@@ -55,12 +59,18 @@ function Card(props) {
         </button>
 
       {show.length > 0 ?
-      <div>{show}</div>
-      : <></>
+
+        show.map((singleShow, i) => (
+          <div key={i}>
+            {singleShow.title}
+          </div>
+        )
+        )
+  : <div></div>
       }
 
-    </div>
-  );
+      </div>
+    )  
 }
 
 export default Card;

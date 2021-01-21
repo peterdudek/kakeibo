@@ -34,7 +34,7 @@ export default {
     },
 
     findShows: function() {
-      return axios.get("/api/shows");
+      return axios.get("/api/shows/shows");
     },
 };
 

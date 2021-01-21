@@ -65,7 +65,10 @@ function Subscription() {
 				// username: formObject.username,
 			})
 
-				.then(res => setSubscription(res.data))
+				.then(res => {
+          console.log(res.data)
+          setSubscription({...subscription, paymentAmount: formObject.paymentAmount})
+        })
 				.then(() => setFormObject({
 					// subscriptionName: "",
 					paymentAmount: "",
