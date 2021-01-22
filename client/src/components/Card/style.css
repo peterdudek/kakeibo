@@ -1,0 +1,28 @@
+.holder {   
+  width: auto;
+  display: inline-block;    
+}
+
+.holder img {
+  width: 30%;
+  height: auto;
+}
+
+/* .narrower {
+  width: 18rem;
+} */
+
+.scrollableCard {
+  height: 70vh;
+  overflow: auto;
+  border-radius: 15px;
+  border: 1px solid black;
+}
+
+.extraMargin {
+  margin-left: 20px;
+}
+
+.cardMargin {
+  margin: 0px 20px 5px 20px;
+}
