@@ -39,6 +39,7 @@ function App() {
 			// setUserState={setUserState}
 			// setUserState={setUserState}
 			/>
+			<hr></hr>
 			{/* <Head /> */}
 			<Container>
 				<Switch>
@@ -72,11 +73,12 @@ function App() {
 					</ProtectedRoute>
 					<Route component={NoMatch} />
 				</Switch>
+				<Footer />
 			</Container>
 			{ userState.email ? <Redirect to="/subscriptions" />
 				// added this code - Peter
 				: <Redirect to="/" />}
-			<Footer />
+			{/* <Footer /> */}
 		</Router>
 	);
 }

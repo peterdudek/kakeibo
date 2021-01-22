@@ -33,8 +33,8 @@ export default {
       return axios.put("/api/subscriptions/" + id, subscriptionData);
     },
 
-    findShows: function() {
-      return axios.get("/api/shows/shows");
+    findShows: function(q) {
+      return axios.get("/api/shows/shows", { params: { q } });
     },
 };
 

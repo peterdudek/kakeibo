@@ -3,24 +3,18 @@ import { Link, useRouteMatch } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import Card from "../components/Card";
 import API from "../utils/API";
-import back from "../img/backarrow.png";
+import back from "../img/arrow-b.png";
 import { ForwardRefInput, FormBtn } from "../components/Form";
 import streamingAPI from "../utils/streamingAPI";
+// import plus from "../img/plus.png";
 
 function Subscription() {
   const [subscription, setSubscription] = useState({});
   const [formObject, setFormObject] = useState({
-		// subscriptionName: "",
-		paymentAmount: "",
-		// username: username,
+    paymentAmount: "",
   });
 
   const titleInputElRef = useRef();
-  
-  
-	function loadSth() {
-    console.log("DONE!!!!!!!")
-	}
 
   // const [userSubscription, setUserSubscription] = useState([]);
   // When this component mounts, grab the subscription with the _id of props.match.params.id
@@ -30,11 +24,8 @@ function Subscription() {
 
   useEffect(() => {
     setFormObject({
-			// subscriptionName: "",
-			paymentAmount: "",
-			// username: username
-		})
-
+      paymentAmount: "",
+    })
 
     API.getSubscription(match.params.id)
       .then(res => setSubscription(res.data))
@@ -45,40 +36,36 @@ function Subscription() {
     //   .catch(err => console.log(err));
   }, [match.params.id])
 
-  console.log("That's it:", subscription._id)
+  // console.log("That's it:", subscription._id)
 
   function handleInputChange(event) {
-		const { name, value } = event.target;
-		setFormObject({ ...formObject, [name]: value });
-	}
+    const { name, value } = event.target;
+    setFormObject({ ...formObject, [name]: value });
+  }
 
   function handleFormSubmit(event) {
     event.preventDefault();
-    console.log("Good job: ", event.target.value);
-		// showMovie();
-		if (formObject.paymentAmount) {
-			API.updateSubscription(
+    // console.log("Good job: ", event);
+    // showMovie();
+    if (formObject.paymentAmount) {
+      API.updateSubscription(
         subscription._id,
         {
-				// subscriptionName: formObject.subscriptionName,
-				paymentAmount: formObject.paymentAmount,
-				// username: formObject.username,
-			})
-
-				.then(res => {
-          console.log(res.data)
-          setSubscription({...subscription, paymentAmount: formObject.paymentAmount})
+          paymentAmount: formObject.paymentAmount,
         })
-				.then(() => setFormObject({
-					// subscriptionName: "",
-					paymentAmount: "",
-					// username: username
+
+        .then(res => {
+          console.log(res.data)
+          setSubscription({ ...subscription, paymentAmount: formObject.paymentAmount })
+        })
+        .then(() => setFormObject({
+          paymentAmount: "",
         }))
         .catch((err) => console.log(err));
-        
-        alert("Your subscription price will be updated momentarily")
-		}
-	}
+
+      // alert("Your subscription price will be updated momentarily")
+    }
+  }
 
   return (
     <Container fluid>
@@ -86,51 +73,103 @@ function Subscription() {
         <Col size="md-2">
           <Link className="text-dark" to="/subscriptions">
             <img src={back} alt="back-btn" height="50px" />
-
           </Link>
         </Col>
       </Row>
       <Row>
-        <Col size="md-10 md-offset-1">
+        <Col size="md-2">
+        </Col>
+        <Col size="md-4">
+        <div
+        // className="extraMargin"
+        >
+
+          <div className="text-center">
+            <img src={subscription.logo} alt="company-logo" className="thumb" />
+            {/* {props.children} */}
+
+          </div>
+          <div className="text-center">
+            <strong><h1>
+              {subscription.subscriptionName}
+            </h1>
+
+            </strong>
+            {/* <strong>{props.heading}: </strong> */}
+          </div>
+          <p className="text-center">Cost per month: ${subscription.paymentAmount}</p>
+        </div>
+        </Col>
+        <Col size="md-6">
+        <Row>
+        <Col size='md-4'>
+          <form className="marginTopandBottom">
+            <Row>
+              <Col size='md-10'>
+                <ForwardRefInput ref={titleInputElRef}
+                  value={formObject.paymentAmount}
+                  // id={subscription._id}
+                  onChange={handleInputChange}
+                  name='paymentAmount'
+                  placeholder='payment amount'
+                />
+              </Col>
+              <Col size='md-2'>
+                <FormBtn
+                  disabled={!formObject.paymentAmount}
+                  onClick={handleFormSubmit}
+                >
+                  Update
+                  {/* <img src={plus} alt="plus-sign" height="20px" /> */}
+                </FormBtn>
+              </Col>
+            </Row>
+          </form>
+
+        </Col>
+      </Row>
+        </Col>
+      </Row>
+
+      {/* <Row>
+        <Col size='md-4'>
+          <form className="marginTopandBottom">
+            <Row>
+              <Col size='md-10'>
+                <ForwardRefInput ref={titleInputElRef}
+                  value={formObject.paymentAmount}
+                  onChange={handleInputChange}
+                  name='paymentAmount'
+                  placeholder='payment amount'
+                />
+              </Col>
+              <Col size='md-2'>
+                <FormBtn
+                  disabled={!formObject.paymentAmount}
+                  onClick={handleFormSubmit}
+                >
+                  Update
+                </FormBtn>
+              </Col>
+            </Row>
+          </form>
+
+        </Col>
+      </Row> */}
+
+      <Row>
+        <Col size="md-12">
           <article>
             <Card
               subscription={subscription}
-              // userSubscription={userSubscription}
             />
 
           </article>
         </Col>
       </Row>
 
+      
 
-
-      <Row>
-      <Col size='md-4'>
-					<form className="marginTopandBottom">
-						<Col size='md-12'>
-							{/* <ForwardRefInput ref={titleInputElRef}
-								value={formObject.subscriptionName}
-								onChange={handleInputChange}
-								name='subscriptionName'
-								placeholder='your subscription name'
-							/> */}
-							<ForwardRefInput ref={titleInputElRef}
-                value={formObject.paymentAmount}
-                // id={subscription._id}
-								onChange={handleInputChange}
-								name='paymentAmount'
-								placeholder='payment amount'
-							/>
-						</Col>
-						<FormBtn
-							// disabled={!formObject.subscriptionName && !formObject.paymentAmount}
-							onClick={handleFormSubmit}>
-							Update Price
-					</FormBtn>
-					</form>
-					<Row></Row>
-				</Col>
-      </Row>
 
     </Container>
   );

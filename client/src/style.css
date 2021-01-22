@@ -3,16 +3,28 @@
 * { font-family: 'Roboto', sans-serif; }
 
 /* stylelint-disable */
-:root {
+
+/* :root {
   --footer-height: 52px;
-}
+} */
+
 /* stylelint-enable */
 a { 
   color: black;
   font-weight: bold;
+  transition: transform .2s;
 }
-/* a:hover {
+a:hover {
   text-decoration: none;
+  transform: scale(1.1); 
+}
+
+/* tr {
+  transition: transform .2s;
+}
+
+tr:hover {
+  transform: scale(1.05); 
 } */
 
 
@@ -76,7 +88,8 @@ body {
   border: 0;
 }
 
-@media (min-width: 1200px) {
+/* I TURNED OFF THIS MEDIA PROPERTIES (PETER) */
+/* @media (min-width: 1200px) {
   .container {
     width: 990px;
   }
@@ -86,7 +99,7 @@ body {
   .container {
     width: 990px;
   }
-}
+} */
 
 .enter_section {
   margin-top: 30px;
@@ -118,6 +131,8 @@ body {
   margin-bottom: 16px;
 }
 
+
+/* Peter's classes start here */
 .kakeiboFont {
   font-family: 'Hachi Maru Pop', cursive;
 }
@@ -163,8 +178,38 @@ h1 {
 .thumb {
   border-radius: 15px;
   /* margin-left: 15px; */
+  /* padding: 50px; */
+  /* background-color: green; */
+  transition: transform .2s;
+  /* width: 200px; */
+  /* height: 200px; */
+  /* margin: 0 auto; */
+}
+
+.thumb:hover {
+  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 /* .texty {
   text-align: left;
 } */
+
+.solidBorders {
+  min-height: 10vh;
+  /* overflow: auto; */
+  border-radius: 15px;
+  border: 1px solid black;
+  margin-left: 5px;
+  /* padding: 10 px; */
+  /* margin-bottom: 40px; */
+}
+
+.cnFlex {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.extraMarg {
+  margin-top: 10px;
+}

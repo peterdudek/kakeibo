@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 import { Col, Row } from "../components/Grid";
 import { Table, Tr, Td } from "../components/Table";
 import { ForwardRefInput, FormBtn } from "../components/Form";
-import { Pie, Doughnut } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 import movieAPI from "../utils/movieAPI";
 import plus from "../img/plus.png";
 
-import Total from "../components/Total";
+import { Average, Total } from "../components/Total";
 
 function Subscriptions({ username }) {
 	// console.log(username)
@@ -41,7 +41,6 @@ function Subscriptions({ username }) {
 
 		loadSubscriptions();
 		loadUserSubscriptions();
-
 		// focus on titleInputEl if ref exists
 		titleInputElRef.current.focus()
 	}, [username]);
@@ -63,7 +62,6 @@ function Subscriptions({ username }) {
 			.catch((err) => console.log(err));
 	}
 
-
 	// Deletes a subscription from the database with a given id, then reloads subscriptions from the db
 	function deleteSubscription(id) {
 		API.deleteSubscription(id)
@@ -78,7 +76,6 @@ function Subscriptions({ username }) {
 			subscriptionName: subscription.subscriptionName,
 			username: username,
 			logo: subscription.logo
-
 		}
 
 		API.saveSubscription(newSubscription)
@@ -117,10 +114,8 @@ function Subscriptions({ username }) {
 		}
 	}
 
-
 	// var randomColor = Math.floor(Math.random() * 16777215).toString(16);
 	const pieState = {
-
 		labels: userSubscriptions.map(subscription => (subscription.subscriptionName)),
 		datasets: [
 			{
@@ -147,178 +142,208 @@ function Subscriptions({ username }) {
 
 	function showMovie() {
 		movieAPI.findMovie()
-		// .then((res) => console.log(res))
-		// .catch((err) => console.log(err));
 	}
 
 	return (
 		<>
 			<Row>
-				<Col size='md-4'>
-					<h4 style={{ textAlign: "center", display: "block" }}><strong>Trending subscriptions</strong></h4>
-					{subscriptions.length ? (
-						<Table>
-							{subscriptions.map(subscription => (
-								<Tr key={subscription._id}>
-									<Td>
-										<Link
-											to={"/subscriptions/" + subscription._id}
-											style={{ textAlign: "left", display: "block" }}
-										>
-											<div
-												className="d-flex"
-											// className="row justify-content-between"
-											>
-												<div className="p-2">
-													<img className="thumb" alt={subscription.subscriptionName} src={subscription.logo} height="30px" />
-												</div>
-												<div className="p-2">{subscription.subscriptionName}</div>
-												<div className="ml-auto p-2">{" $"}{subscription.paymentAmount}</div>
-											</div>
+				<Col size='md-12'>
+					<Row>
+						<Col size='md-4'>
+							<div className="signupMargin">
+								<h4 style={{ textAlign: "center", display: "block" }}><strong>Trending subscriptions</strong></h4>
+								{subscriptions.length ? (
+									<Table>
+										{subscriptions.map(subscription => (
+											<Tr key={subscription._id}>
+												<Td>
+													<Link
+														to={"/subscriptions/" + subscription._id}
+														style={{ textAlign: "left", display: "block" }}
+													>
+														<div
+															className="d-flex"
+														>
+															<div className="p-2">
+																<img className="thumb" alt={subscription.subscriptionName} src={subscription.logo} height="30px" />
+															</div>
+															<div className="p-2">{subscription.subscriptionName}</div>
+															<div className="ml-auto p-2">{" $"}{subscription.paymentAmount}</div>
+														</div>
+													</Link>
+												</Td>
 
-										</Link>
-									</Td>
-
-									<Td>
-										<AddBtn onClick={() => {
-											saveSubscription(subscription)
-										}
-										} />
-									</Td>
-								</Tr>
-							))}
-						</Table>
-					) : (
-							<h4>Nothing to Display. Start streaming!</h4>
-						)}
-				</Col>
-
-				<Col size='md-4'></Col>
-
-				{/* USER SAVED SUBSCRIPTIONS */}
-				<Col size='md-4'>
-					<h4 style={{ textAlign: "center", display: "block" }}><strong>My subscriptions</strong></h4>
-					{userSubscriptions.length ? (
-						<>
-							<Table>
-								{userSubscriptions.map(subscription => (
-									<Tr key={subscription._id}>
-										<Td>
-											<Link
-												to={"/subscriptions/" + subscription._id}
-												style={{ textAlign: "left", display: "block" }}>
-
-												<div
-													className="d-flex"
-												// className="row justify-content-between"
-												>
-													<div className="p-2">
-														<img className="thumb" alt={subscription.subscriptionName} src={subscription.logo} height="30px" />
-													</div>
-													<div className="p-2">{subscription.subscriptionName}</div>
-													<div className="ml-auto p-2">{" $"}{subscription.paymentAmount}</div>
-												</div>
-
-											</Link>
-										</Td>
-										<Td>
-
-										</Td>
-										<Td>
-											<DeleteBtn onClick={() => deleteSubscription(subscription._id)} />
-										</Td>
-									</Tr>
-								))}
-							</Table>
-							<Total
-								userSubscriptions={userSubscriptions}
-								username={username}
-							/>
-						</>
-					) : (
-							<h4>Nothing to Display. Start streaming!</h4>
-						)}
-				</Col>
-			</Row>
-
-			<Row>
-				<Col size='md-4'>
-
-
-					<form className="marginTopandBottom">
-						<Row>
-						<Col size='md-5'>
-							<ForwardRefInput ref={titleInputElRef}
-								value={formObject.subscriptionName}
-								onChange={handleInputChange}
-								name='subscriptionName'
-								placeholder='Your subscription'
-							/>
-							</Col>
-							<Col size='md-5'>
-							<ForwardRefInput ref={titleInputElRef}
-								value={formObject.paymentAmount}
-								onChange={handleInputChange}
-								name='paymentAmount'
-								placeholder='Payment'
-							/>
+												<Td>
+													<AddBtn onClick={() => {
+														saveSubscription(subscription)
+													}
+													} />
+												</Td>
+											</Tr>
+										))}
+									</Table>
+								) : (
+										<h4>Nothing to Display. Start streaming!</h4>
+									)}
+							</div>
 						</Col>
-						<Col size='md-2'>
-						<FormBtn
-							disabled={!formObject.subscriptionName && !formObject.paymentAmount}
-							onClick={handleFormSubmit}>
-							{/* Add Subscription */}
-							<img src={plus} alt="plus-sign" height="20px"/>
-					</FormBtn>
-					</Col>
-					</Row>
-					</form>
+
+						<Col size='md-4'>
+							<div className="signupMargin">
+								<h4 style={{ textAlign: "center", display: "block" }}><strong>Monthly cost</strong></h4>
+								<div className="scrollable">
+									<div className="signupMargin">
+										{userSubscriptions.length ? (
+											<Doughnut
+												data={pieState}
+												options={{
+													title: {
+														display: false,
+														text: 'Average cost',
+														fontSize: 20,
+														fontFamily: 'Roboto'
+													},
+													legend: {
+														display: true,
+														position: 'bottom'
+													}
+												}}
+											/>
+										) : (
+												<div>
+													<h4 style={{ textAlign: "center", display: "block" }} className="signupMargin">Nothing to display...</h4>
+													<h4 style={{ textAlign: "center", display: "block" }} className="signupMargin">Start saving!</h4>
+												</div>
+											)}
+									</div>
+								</div>
+							</div>
+						</Col>
+
+						{/* USER SAVED SUBSCRIPTIONS */}
+						<Col size='md-4'>
+							<div className="signupMargin">
+								<h4 style={{ textAlign: "center", display: "block" }}><strong>My subscriptions</strong></h4>
+								{userSubscriptions.length ? (
+									<>
+										<Table>
+											{userSubscriptions.map(subscription => (
+												<Tr key={subscription._id}>
+													<Td>
+														<Link
+															to={"/subscriptions/" + subscription._id}
+															style={{ textAlign: "left", display: "block" }}>
+															<div
+																className="d-flex"
+															>
+																<div className="p-2">
+																	<img className="thumb" alt={subscription.subscriptionName} src={subscription.logo} height="30px" />
+																</div>
+																<div className="p-2">{subscription.subscriptionName}</div>
+																<div className="ml-auto p-2">{" $"}{subscription.paymentAmount}</div>
+															</div>
+														</Link>
+													</Td>
+													<Td>
+
+													</Td>
+													<Td>
+														<DeleteBtn onClick={() => deleteSubscription(subscription._id)} />
+													</Td>
+												</Tr>
+											))}
+										</Table>
+										{/* <Total
+									userSubscriptions={userSubscriptions}
+									username={username}
+								/> */}
+									</>
+								) : (
+										<div className="scrollable">
+											<h4 style={{ textAlign: "center", display: "block" }} className="signupMargin">Nothing to display...</h4>
+											<h4 style={{ textAlign: "center", display: "block" }} className="signupMargin">Start streaming!</h4>
+										</div>
+									)}
+							</div>
+						</Col>
 
 
 
-					<Row></Row>
-				</Col>
 
-				<Col size='md-2'> </Col>
+						<Col size='md-4'>
+							<div className="solidBorders cnFlex">
+								<form className="extraMarg">
+									<Row>
+										<Col size='md-1'>
+										</Col>
 
-				<Col size='md-6'>
-					<div>
-						{/* <Pie
-          data={state}
-          options={{
-            title:{
-              display:true,
-              text:'Average Rainfall per month',
-              fontSize:20
-            },
-            legend:{
-              display:true,
-              position:'right'
-            }
-          }}
-        /> */}
+										<Col size='md-6'>
+											<ForwardRefInput ref={titleInputElRef}
+												value={formObject.subscriptionName}
+												onChange={handleInputChange}
+												name='subscriptionName'
+												placeholder='Subscription name'
+											/>
+										</Col>
 
-						<Doughnut
-							data={pieState}
-							options={{
-								title: {
-									display: true,
-									text: 'Average cost/month',
-									fontSize: 20,
-									fontFamily: 'Roboto'
-								},
-								legend: {
-									display: true,
-									position: 'right'
+										<Col size='md-2'>
+											<ForwardRefInput ref={titleInputElRef}
+												value={formObject.paymentAmount}
+												onChange={handleInputChange}
+												name='paymentAmount'
+												placeholder='$$$'
+											/>
+										</Col>
+
+										<Col size='md-2'>
+
+											<FormBtn
+												disabled={!formObject.subscriptionName && !formObject.paymentAmount}
+												onClick={handleFormSubmit}>
+												<img src={plus} alt="plus-sign" height="20px" />
+											</FormBtn>
+
+										</Col>
+										<Col size='md-1'>
+										</Col>
+
+									</Row>
+								</form>
+							</div>
+						</Col>
+
+						<Col size='md-4'>
+							<div className="solidBorders cnFlex">
+								{/* AVERAGE: */}
+								{userSubscriptions.length > 0 ?
+									<Average
+										userSubscriptions={userSubscriptions}
+										username={username}
+									/>
+									: <>AVERAGE: $0.00</>
 								}
-							}}
-						/>
-					</div>
+
+							</div>
+						</Col>
+
+						<Col size='md-4'>
+							<div className="solidBorders cnFlex">
+								<Total
+									userSubscriptions={userSubscriptions}
+									username={username}
+								/>
+							</div>
+						</Col>
+
+					</Row>
 
 				</Col>
 			</Row>
-
+			<Row>
+				<p>To be continued...</p>
+			</Row>
 		</>
+
 	);
 }
 

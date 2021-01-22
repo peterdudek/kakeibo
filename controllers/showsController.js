@@ -5,13 +5,19 @@ const axios = require("axios");
 
 module.exports = {
   findAll: function (req, res) {
-    console.log("Helloo!!!!")
+    // console.log("Helloo!!!!")
+    // console.log("Tutaj: ", req.q)
+    // const q = req.q;
+    const { query: params } = req;
+    console.log("Oto moje: ", params)
+
+
     const options = {
       method: 'GET',
       url: 'https://streaming-availability.p.rapidapi.com/search/basic',
       params: {
         country: 'us',
-        service: 'netflix',
+        service: params.q,
         type: 'movie',
         genre: '18',
         page: '1',
@@ -25,7 +31,7 @@ module.exports = {
     
     axios.request(options).then(function (response) {
   
-      console.log(response);
+      // console.log(response);
       // return (response.data.results[0].originalTitle);
       res.json(response.data)
 
@@ -34,48 +40,11 @@ module.exports = {
       console.error(error);
     });
 
-    console.log(req.user)
+    // console.log(req.user)
+    
     // db.Show
     //   .find({})
     //   .then(dbModel => res.json(dbModel))
     //   .catch(err => res.status(422).json(err));
   },
-
-  // findOne: function (req, res) {
-  //   console.log(req.user)
-  //   db.User
-  //     .find({
-  //       _id: req.user._id
-  //     })
-  //     .populate("subscription")
-  //     .sort({ date: -1 })
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(422).json(err));
-  // },
-
-  // findById: function (req, res) {
-  //   console.log(req.params.id)
-  //   db.Subscription
-  //     .findById(req.params.id)
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(422).json(err));
-  // },
-
-  // create: function (req, res) {
-  //   // const boddy = req.subscriptionName
-  //   // if no user on the session
-  //   if (!req.user) return res.status(401).end('user isnt authenticated')
-  //   // console.log("Here: ", req.body)
-  //   db.Subscription
-  //     // .createIndex({ email: 1 }, { unique: true })
-  //     // subscriptionSchema.index({ username: 1, subscriptionName: 1, paymentAmount: 1 }, { unique: true });  
-  //     // .createIndexes({ username: 1, subscriptionName: 1, paymentAmount: 1 }, { unique: true }) 
-  //     .create(req.body)
-  //     // .then(({ _id }) => db.User.findOneAndUpdate({ _id: req.user._id }, { $addToSet: { subscription: _id } }, { new: true }))
-  //     .then(({ _id }) => db.User.findOneAndUpdate({ _id: req.user._id }, { $push: { subscription: _id } }, { new: true }))
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(422).json(err));
-  // },
-  
-
 };
