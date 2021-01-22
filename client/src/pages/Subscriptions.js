@@ -9,6 +9,7 @@ import { ForwardRefInput, FormBtn } from "../components/Form";
 import { Doughnut } from 'react-chartjs-2';
 import movieAPI from "../utils/movieAPI";
 import plus from "../img/plus.png";
+// import defLogo from "../img/stream_icon.png";
 
 import { Average, Total } from "../components/Total";
 
@@ -16,6 +17,7 @@ function Subscriptions({ username }) {
 	// console.log(username)
 	// Setting our component's initial state
 	// const [showBtn, setShowBtn] = useState(true);
+	// const [icon, setIcon] = useState({})
 	const [subscriptions, setSubscriptions] = useState([]);
 	const [userName, setUsername] = useState({});
 	const [userSubscriptions, setUserSubscriptions] = useState([]);
@@ -101,7 +103,8 @@ function Subscriptions({ username }) {
 				subscriptionName: formObject.subscriptionName,
 				paymentAmount: formObject.paymentAmount,
 				username: formObject.username,
-				logo: "https://logo.clearbit.com/" + formObject.subscriptionName + ".com"
+				// logo: "https://logo.clearbit.com/" + formObject.subscriptionName + ".com"
+				logo: "https://raw.githubusercontent.com/Piotr72us/piotr-portfolio-react/main/src/img/icons/stream_icon.png"
 			})
 
 				.then(loadUserSubscriptions)
@@ -143,6 +146,8 @@ function Subscriptions({ username }) {
 	function showMovie() {
 		movieAPI.findMovie()
 	}
+
+	const reversedSubs = userSubscriptions.map(item => item).reverse();
 
 	return (
 		<>
@@ -224,10 +229,10 @@ function Subscriptions({ username }) {
 						<Col size='md-4'>
 							<div className="signupMargin">
 								<h4 style={{ textAlign: "center", display: "block" }}><strong>My subscriptions</strong></h4>
-								{userSubscriptions.length ? (
+								{reversedSubs.length ? (
 									<>
 										<Table>
-											{userSubscriptions.map(subscription => (
+											{reversedSubs.map(subscription => (
 												<Tr key={subscription._id}>
 													<Td>
 														<Link

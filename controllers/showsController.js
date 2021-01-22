@@ -14,13 +14,17 @@ module.exports = {
 
     const options = {
       method: 'GET',
-      url: 'https://streaming-availability.p.rapidapi.com/search/basic',
+      url: 'https://streaming-availability.p.rapidapi.com/search/pro',
       params: {
         country: 'us',
         service: params.q,
-        type: 'movie',
+        type: 'series',
+        order_by: 'year',
+        year_min: '2019',
+        year_max: '2021',
         genre: '18',
         page: '1',
+        desc: 'true',
         language: 'en'
       },
       headers: {
@@ -30,21 +34,11 @@ module.exports = {
     };
     
     axios.request(options).then(function (response) {
-  
-      // console.log(response);
-      // return (response.data.results[0].originalTitle);
+      // console.log(response.data);
       res.json(response.data)
 
-      
     }).catch(function (error) {
       console.error(error);
     });
-
-    // console.log(req.user)
-    
-    // db.Show
-    //   .find({})
-    //   .then(dbModel => res.json(dbModel))
-    //   .catch(err => res.status(422).json(err));
   },
 };
