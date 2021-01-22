@@ -181,14 +181,14 @@ h1 {
   /* padding: 50px; */
   /* background-color: green; */
   transition: transform .2s;
-  /* width: 200px; */
-  /* height: 200px; */
+  max-width: 128px;
+  max-height: 128px;
   /* margin: 0 auto; */
 }
 
-.thumb:hover {
-  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-}
+/* .thumb:hover {
+  transform: scale(1.5);
+} */
 
 /* .texty {
   text-align: left;
@@ -212,4 +212,20 @@ h1 {
 
 .extraMarg {
   margin-top: 10px;
+}
+
+.blackBtn {
+  transition: transform .2s;
+}
+
+.blackBtn:hover {
+  transform: scale(1.2);
+}
+
+.cardShowMarg {
+  margin-left: 15px;
+}
+
+.customFormMargin {
+  margin-top: 40px;
 }

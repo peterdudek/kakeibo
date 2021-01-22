@@ -41,7 +41,7 @@ const subscriptionsSeeds = [{
     },
     {
         username: "Admin",
-        subscriptionName: "Amazon Prime",
+        subscriptionName: "Prime",
         paymentAmount: 8.99,
         date: { type: Date, default: Date.now },
         logo: "https://logo.clearbit.com/amazon.com"
@@ -83,7 +83,7 @@ const subscriptionsSeeds = [{
     },
     {
         username: "Admin",
-        subscriptionName: "Disney+",
+        subscriptionName: "Disney +",
         paymentAmount: 6.99,
         date: { type: Date, default: Date.now },
         logo: "https://logo.clearbit.com/disney.com"
@@ -108,6 +108,13 @@ const subscriptionsSeeds = [{
         paymentAmount: 3.99,
         date: { type: Date, default: Date.now },
         logo: "https://logo.clearbit.com/nintendo.com"
+    },
+    {
+        username: "Admin",
+        subscriptionName: "HBO Max",
+        paymentAmount: 14.99,
+        date: { type: Date, default: Date.now },
+        logo: "https://logo.clearbit.com/hbo.com"
     },
 
 ];

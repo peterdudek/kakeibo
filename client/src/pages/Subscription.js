@@ -7,6 +7,7 @@ import back from "../img/arrow-b.png";
 import { ForwardRefInput, FormBtn } from "../components/Form";
 import streamingAPI from "../utils/streamingAPI";
 // import plus from "../img/plus.png";
+import refresh from "../img/refresh.png";
 
 function Subscription() {
   const [subscription, setSubscription] = useState({});
@@ -63,99 +64,86 @@ function Subscription() {
         }))
         .catch((err) => console.log(err));
 
-      // alert("Your subscription price will be updated momentarily")
     }
   }
 
   return (
     <Container fluid>
+
       <Row>
-        <Col size="md-2">
+
+        <Col size="md-1">
           <Link className="text-dark" to="/subscriptions">
-            <img src={back} alt="back-btn" height="50px" />
+            <img src={back} alt="back-btn" height="50px" className="blackBtn" />
           </Link>
         </Col>
-      </Row>
-      <Row>
-        <Col size="md-2">
-        </Col>
-        <Col size="md-4">
-        <div
-        // className="extraMargin"
-        >
 
-          <div className="text-center">
-            <img src={subscription.logo} alt="company-logo" className="thumb" />
-            {/* {props.children} */}
+        <Col size="md-3">
+          <div
+          // className="extraMargin"
+          >
+
+            <div className="text-center">
+              <img src={subscription.logo} alt="company-logo" className="thumb" />
+            </div>
 
           </div>
-          <div className="text-center">
-            <strong><h1>
-              {subscription.subscriptionName}
-            </h1>
-
-            </strong>
-            {/* <strong>{props.heading}: </strong> */}
-          </div>
-          <p className="text-center">Cost per month: ${subscription.paymentAmount}</p>
-        </div>
         </Col>
-        <Col size="md-6">
-        <Row>
-        <Col size='md-4'>
-          <form className="marginTopandBottom">
-            <Row>
-              <Col size='md-10'>
-                <ForwardRefInput ref={titleInputElRef}
-                  value={formObject.paymentAmount}
-                  // id={subscription._id}
-                  onChange={handleInputChange}
-                  name='paymentAmount'
-                  placeholder='payment amount'
-                />
-              </Col>
-              <Col size='md-2'>
-                <FormBtn
-                  disabled={!formObject.paymentAmount}
-                  onClick={handleFormSubmit}
-                >
-                  Update
-                  {/* <img src={plus} alt="plus-sign" height="20px" /> */}
-                </FormBtn>
-              </Col>
-            </Row>
-          </form>
 
+        <Col size="md-8">
+          <Row>
+            <Col size='md-4'>
+              <div className="text-left">
+                <div className="text-left">
+                  <h2>{subscription.subscriptionName}</h2>
+                </div>
+                <div>
+                  <p className="text-left">Price/month: ${subscription.paymentAmount}</p>
+                </div>
+              </div>
+            </Col>
+
+            <Col size='md-4'>
+              <div className="customFormMargin">
+                <form>
+                  <Row>
+                    {/* <Col size='md-1'>
+                      </Col> */}
+                    <Col size='md-6'>
+                      <div className="cardShowMarg">
+                        <ForwardRefInput ref={titleInputElRef}
+                          value={formObject.paymentAmount}
+                          // id={subscription._id}
+                          onChange={handleInputChange}
+                          name='paymentAmount'
+                          placeholder='Update $'
+                        />
+                      </div>
+                    </Col>
+                    <Col size='md-2'>
+                      <FormBtn
+                        disabled={!formObject.paymentAmount}
+                        onClick={handleFormSubmit}
+
+                      >
+                        <img src={refresh} alt="refresh-sign" height="20px" />
+                      </FormBtn>
+                    </Col>
+                    <Col size='md-4'>
+                    </Col>
+                  </Row>
+                </form>
+              </div>
+            </Col>
+            <Col size='md-4'>
+            </Col>
+
+
+          </Row>
         </Col>
+
       </Row>
-        </Col>
-      </Row>
 
-      {/* <Row>
-        <Col size='md-4'>
-          <form className="marginTopandBottom">
-            <Row>
-              <Col size='md-10'>
-                <ForwardRefInput ref={titleInputElRef}
-                  value={formObject.paymentAmount}
-                  onChange={handleInputChange}
-                  name='paymentAmount'
-                  placeholder='payment amount'
-                />
-              </Col>
-              <Col size='md-2'>
-                <FormBtn
-                  disabled={!formObject.paymentAmount}
-                  onClick={handleFormSubmit}
-                >
-                  Update
-                </FormBtn>
-              </Col>
-            </Row>
-          </form>
-
-        </Col>
-      </Row> */}
 
       <Row>
         <Col size="md-12">
@@ -163,17 +151,12 @@ function Subscription() {
             <Card
               subscription={subscription}
             />
-
           </article>
         </Col>
       </Row>
 
-      
-
-
     </Container>
   );
 }
-
 
 export default Subscription;

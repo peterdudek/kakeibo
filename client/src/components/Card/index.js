@@ -15,8 +15,8 @@ function Card(props) {
 
   function handleFormSubmit(event) {
     event.preventDefault();
-    const q = props.subscription.subscriptionName.toLowerCase();
-    console.log("MY q:", q);
+    const q = props.subscription.subscriptionName.toLowerCase().split(" ")[0]
+    // console.log("MY query:", q);
     API.findShows(q)
       .then((res) => {
         // console.log(res)
@@ -27,61 +27,70 @@ function Card(props) {
 
   // console.log("Yooo!: ", props.subscription.subscriptionName);
   return (
-    <div className="scrollableCard">
-      
-
-      {/* <div className="extraMargin">
-      <div className="text-left">
-        <strong>
-        {props.subscription.subscriptionName}
-        </strong>
-
+    <>
+      <div className="centerShowBtn">
+        <FormBtn
+          onClick={handleFormSubmit}
+        >
+          What to watch?
+    </FormBtn>
       </div>
-      <div className="text-left">
-        <img src={props.subscription.logo} alt="company-logo" className="thumb" />
 
+    {show.length > 0 &&
+      <div className="scrollableCard">
 
-      </div>
-      <p className="text-left">Cost per month: ${props.subscription.paymentAmount}</p>
-      </div> */}
+        <Row>
+          {show.length > 0 ?
 
-      <FormBtn
-        onClick={handleFormSubmit}
-      >
-        What to watch?
-        </FormBtn>
-      <Row>
-        {show.length > 0 ?
-
-          show.map((singleShow, i) => (
-            // <Row>
+            show.map((singleShow, i) => (
+              // <Row>
               <div key={i} className="cardMargin">
-                <h5 className="card-header">{singleShow.title} {" ("}{singleShow.year}{")"}</h5>
+                <div className="holder">
+                <h5>{singleShow.title} {" ("}{singleShow.year}{")"}</h5>
+                </div>
+                {/* <hr></hr> */}
                 <div className="holder">
                   <img src={singleShow.backdropURLs.original} />
                 </div>
                 {/* <div className="holder">
                   <img src={singleShow.posterURLs.original} />
                 </div> */}
-                <p className="card-text">Rating: {singleShow.imdbRating}</p>
-                <div 
-                className="card"
+                <div className="holder">
+                <p 
+                // className="card-text"
+                >Rating: {singleShow.imdbRating}</p>
+                </div>
+                <div
+                  // className="card"
                 >
-                  <h5 className="card-title">Overview</h5>
-                  <p className="card-text">{singleShow.overview}</p>
-                  <h5 className="card-title">Cast</h5>
-                  <p className="card-text">{singleShow.cast.join(", ")}</p>
-                  {/* <a href={singleShow.streamingInfo.netflix.us.link} className="btn btn-primary" target="_blank">Link</a> */}
+                  <h5 
+                  // className="card-title"
+                  >Overview</h5>
+                  <p 
+                  // className="card-text"
+                  >{singleShow.overview}</p>
+                  <h5 
+                  // className="card-title"
+                  >Cast</h5>
+                  <p
+                  // className="card-text"
+                  >{singleShow.cast.join(", ")}</p>
+                  {/* <a href={singleShow.streamingInfo.netflix.us.link} className="btn one btn-dark rounded-15" target="_blank">Link</a> */}
 
                 </div>
+                <hr></hr>
               </div>
-            // </Row>
-          )
-          )
-          : <div></div>
-        }
-      </Row>
-    </div>
+              // </Row>
+            )
+            )
+            : <div></div>
+          }
+
+        </Row>
+      </div>}
+
+
+    </>
   )
 }
 

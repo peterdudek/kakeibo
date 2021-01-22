@@ -5,10 +5,9 @@ function footer() {
 
 
   return (
-    <div className="centerFooter">
+    <div className="fixed-bottom centerFooter">
       <strong> Copyright © 2021 Manageology Group. 
         <a className="dark" href="https://clearbit.com"> Logos provided by Clearbit</a>
-
       </strong>
     </div>
   )

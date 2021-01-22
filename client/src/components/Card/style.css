@@ -1,6 +1,8 @@
 .holder {   
   width: auto;
-  display: inline-block;    
+  display: block;
+  /* display: inline-block;     */
+  text-align: center;
 }
 
 .holder img {
@@ -13,7 +15,7 @@
 } */
 
 .scrollableCard {
-  height: 70vh;
+  height: 50vh;
   overflow: auto;
   border-radius: 15px;
   border: 1px solid black;
@@ -24,5 +26,12 @@
 }
 
 .cardMargin {
-  margin: 0px 20px 5px 20px;
+  margin: 10px 40px 10px 40px;
+}
+
+.centerShowBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  margin: 20px 0px 10px 0px
 }
