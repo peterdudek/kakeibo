@@ -5,7 +5,7 @@ import Card from "../components/Card";
 import API from "../utils/API";
 import back from "../img/arrow-b.png";
 import { ForwardRefInput, FormBtn } from "../components/Form";
-import streamingAPI from "../utils/streamingAPI";
+// import streamingAPI from "../utils/streamingAPI";
 // import plus from "../img/plus.png";
 import refresh from "../img/refresh.png";
 
@@ -56,7 +56,7 @@ function Subscription() {
         })
 
         .then(res => {
-          console.log(res.data)
+          // console.log(res.data)
           setSubscription({ ...subscription, paymentAmount: formObject.paymentAmount })
         })
         .then(() => setFormObject({

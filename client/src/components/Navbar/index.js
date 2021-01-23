@@ -33,14 +33,15 @@ function Navbar(props) {
           </div>
         <div className="collapse navbar-collapse d-flex" id="navbarNav">
           <ul className="navbar-nav ml-auto p-2 col-example">
-            <li className="nav-item borders">
+            
             {props.username &&
-              <a className="nav-link active" aria-current="page" href="/">Home</a>}
-            </li>
+            <li className="nav-item borders flattenBtn">
+              <a className="nav-link active" aria-current="page" href="/">Home</a>
+            </li>}
 
             {/* added Logout button */}
             {props.username ?
-            <li className="nav-item borders">
+            <li className="nav-item borders flattenBtn">
               <a className="nav-link active testButton" aria-current="page"
                 href="/"
                 onClick={() => logout()}
