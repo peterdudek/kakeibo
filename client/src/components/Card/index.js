@@ -48,7 +48,7 @@ function Card(props) {
         <FormBtn
           onClick={handleFormSubmit}
         >
-          What to watch?
+          What to stream?
     </FormBtn>
       </div>
 
@@ -96,7 +96,7 @@ function Card(props) {
                         : subscription.subscriptionName === "Prime" ? singleShow.streamingInfo.prime.us.link
                           : subscription.subscriptionName === "Disney +" ? singleShow.streamingInfo.disney.us.link
                             : singleShow.streamingInfo.hbo.us.link
-                    } className="btn one btn-dark rounded-15" target="_blank" rel="noopener noreferrer">Link</a>
+                    } className="btn btn-dark rounded-15" target="_blank" rel="noopener noreferrer">Link</a>
 
                   </div>
                   <hr></hr>
