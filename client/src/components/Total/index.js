@@ -51,5 +51,30 @@ export function Average(props) {
   );
 }
 
+export function Annual(props) {
+  // console.log("I am here: ", props.userSubscriptions);
+  let annual = [];
+
+  for (let i = 0; i < props.userSubscriptions.length; i++) {
+    annual.push(props.userSubscriptions[i].paymentAmount);
+  }
+
+  annual = annual.reduce((a, b) => a + b, 0)
+  annual = (annual * 12).toFixed(2);
+
+  // console.log("This is our grand total:", total);
+
+  return (
+    // <div className="
+    //     tableRound
+    //     hidden
+    //     d-flex justify-content-between
+    //     ">
+      <div><strong>ANNUAL COST: {" $"}{annual}</strong></div>
+
+    // </div>
+  );
+}
+
 
 // export default Total;

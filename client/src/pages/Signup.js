@@ -4,7 +4,7 @@ import userAPI from "../utils/userAPI";
 import { Redirect, Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, FormBtn } from "../components/Form";
-import logo from "../img/loading 3.gif";
+// import logo from "../img/loading 3.gif";
 import remote from "../img/remote.gif";
 import tv from "../img/tv.gif";
 
@@ -55,85 +55,87 @@ class Signup extends Component {
       <Container fluid>
         <div className="signupMargin">
           <Row>
-
             <Col size="4">
-              <h2 className="kakeiboFont">Sign up today </h2>
-              <hr/>
-              <h6>Start saving on your streaming</h6>
 
-              <form className="signupMargin">
-                <Input
-                  value={this.state.username}
-                  onChange={this.handleInputChange}
-                  name="username"
-                  placeholder="username"
-                />
-                <Input
-                  value={this.state.email}
-                  onChange={this.handleInputChange}
-                  name="email"
-                  placeholder="email"
-                />
-                <Input
-                  value={this.state.password}
-                  onChange={this.handleInputChange}
-                  name="password"
-                  placeholder="password"
-                  type="password"
-                />
-                <Input
-                  value={this.state.passwordConf}
-                  onChange={this.handleInputChange}
-                  name="passwordConf"
-                  placeholder="confirm password"
-                  type="password"
-                />
+            </Col>
+            {this.state.loading === false ?
+              <Col size="4">
+                <h2 className="kakeiboFont">Sign up today </h2>
+                <hr />
+                <h6>Start saving on your streaming</h6>
 
-                <FormBtn
-                  disabled={!(this.state.email && this.state.passwordConf)}
-                  onClick={this.handleFormSubmit}
-                >
-                  Signup
+                <form className="signupMargin">
+                  <Input
+                    value={this.state.username}
+                    onChange={this.handleInputChange}
+                    name="username"
+                    placeholder="username"
+                  />
+                  <Input
+                    value={this.state.email}
+                    onChange={this.handleInputChange}
+                    name="email"
+                    placeholder="email"
+                  />
+                  <Input
+                    value={this.state.password}
+                    onChange={this.handleInputChange}
+                    name="password"
+                    placeholder="password"
+                    type="password"
+                  />
+                  <Input
+                    value={this.state.passwordConf}
+                    onChange={this.handleInputChange}
+                    name="passwordConf"
+                    placeholder="confirm password"
+                    type="password"
+                  />
+
+                  <FormBtn
+                    disabled={!(this.state.email && this.state.passwordConf)}
+                    onClick={this.handleFormSubmit}
+                  >
+                    Signup
               </FormBtn>
-              <hr/>
-              <div className="">
-                <Link to="/">
-                  <FormBtn> 
-                    Back to Login Page 
+                  <hr />
+                  <div className="">
+                    <Link to="/">
+                      <FormBtn>
+                        Back to Login Page
                     </FormBtn>
-                </Link>
+                    </Link>
+                  </div>
+                </form>
+                <div>
+                  {/* <img alt="loading" src={logo} style={{height: 100}}/> */}
                 </div>
-              </form>
-              <div>
-                {/* <img alt="loading" src={logo} style={{height: 100}}/> */}
+
+              </Col>
+              :
+              <div className="signupMargin2">
+                <Row>
+                  <div className="w-100 mx-auto">
+                    <img alt="loading" src={tv} style={{ height: 250 }} />
+                  </div>
+
+
+                </Row>
+
+                <Row>
+                  <div className="w-0 mx-auto">
+                    <img alt="loading" src={remote} style={{ height: 250 }} />
+                  </div>
+                </Row>
               </div>
 
+            }
+
+
+            <Col size="4">
+
             </Col>
 
-            <Col size="3">
-
-            </Col>
-
-            <Col size="5">
-              {this.state.loading ?
-                <div className="signupMargin2">
-                  <Row>
-                    <div className="w-100 mx-auto">
-                      <img alt="loading" src={tv} style={{ height: 250 }} />
-                    </div>
-                    {/* <img alt="loading" className="centeredLoad" src={tv} style={{height: 150}}/> */}
-
-
-                  </Row>
-
-                  <Row>
-                    <div className="w-0 mx-auto">
-                      <img alt="loading" src={remote} style={{ height: 250 }} />
-                    </div>
-                  </Row>
-                </div>
-                : <></>}
-            </Col>
 
           </Row>
         </div>

@@ -21,7 +21,7 @@ export default {
 
     axios.request(options)
     .then(function (response) {
-      console.log(response.data[1].Watch);
+      // console.log(response.data[1].Watch);
     })
     .catch(function (error) {
       console.error(error);

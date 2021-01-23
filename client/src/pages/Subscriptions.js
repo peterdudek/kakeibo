@@ -11,7 +11,7 @@ import movieAPI from "../utils/movieAPI";
 import plus from "../img/plus.png";
 // import defLogo from "../img/stream_icon.png";
 
-import { Average, Total } from "../components/Total";
+import { Average, Total, Annual } from "../components/Total";
 
 function Subscriptions({ username }) {
 	// console.log(username)
@@ -28,6 +28,7 @@ function Subscriptions({ username }) {
 		//logo: `https://logo.clearbit.com/${subscriptionName}.com`,
 	});
 
+	// console.log(userName);
 	// get input element ref for focus
 	const titleInputElRef = useRef();
 
@@ -104,7 +105,7 @@ function Subscriptions({ username }) {
 				paymentAmount: formObject.paymentAmount,
 				username: formObject.username,
 				// logo: "https://logo.clearbit.com/" + formObject.subscriptionName + ".com"
-				logo: "https://raw.githubusercontent.com/Piotr72us/piotr-portfolio-react/main/src/img/icons/stream_icon.png"
+				logo: "https://raw.githubusercontent.com/Piotr72us/piotr-portfolio/master/assets/images/icons/stream2.png"
 			})
 
 				.then(loadUserSubscriptions)
@@ -155,7 +156,7 @@ function Subscriptions({ username }) {
 				<Col size='md-12'>
 					<Row>
 						<Col size='md-4'>
-							<div className="signupMargin">
+							<div className="signupMargin" style={{ marginRight: "20px" }}>
 								<h4 style={{ textAlign: "center", display: "block" }}><strong>Trending subscriptions</strong></h4>
 								{subscriptions.length ? (
 									<Table>
@@ -227,7 +228,7 @@ function Subscriptions({ username }) {
 
 						{/* USER SAVED SUBSCRIPTIONS */}
 						<Col size='md-4'>
-							<div className="signupMargin">
+							<div className="signupMargin" style={{ marginLeft: "20px"}}>
 								<h4 style={{ textAlign: "center", display: "block" }}><strong>My subscriptions</strong></h4>
 								{reversedSubs.length ? (
 									<>
@@ -276,7 +277,7 @@ function Subscriptions({ username }) {
 
 
 						<Col size='md-4'>
-							<div className="solidBorders cnFlex">
+							<div className="solidBorders cnFlex" style={{ marginRight: "20px"}}>
 								<form className="extraMarg">
 									<Row>
 										<Col size='md-1'>
@@ -318,21 +319,31 @@ function Subscriptions({ username }) {
 						</Col>
 
 						<Col size='md-4'>
-							<div className="solidBorders cnFlex">
+							<div className="solidBorders cnFlex" >
 								{/* AVERAGE: */}
 								{userSubscriptions.length > 0 ?
+								<div>
 									<Average
 										userSubscriptions={userSubscriptions}
 										username={username}
 									/>
-									: <>AVERAGE: $0.00</>
+									<Annual
+									userSubscriptions={userSubscriptions}
+									username={username}
+								/>
+								</div>
+
+									: <div>
+										<p>AVERAGE: $0.00</p>
+										<p>ANNUAL COST: $0.00</p>
+										</div>
 								}
 
 							</div>
 						</Col>
 
 						<Col size='md-4'>
-							<div className="solidBorders cnFlex">
+							<div className="solidBorders cnFlex" style={{ marginLeft: "20px"}}>
 								<Total
 									userSubscriptions={userSubscriptions}
 									username={username}
@@ -344,8 +355,8 @@ function Subscriptions({ username }) {
 
 				</Col>
 			</Row>
+
 			<Row>
-				<p>To be continued...</p>
 			</Row>
 		</>
 

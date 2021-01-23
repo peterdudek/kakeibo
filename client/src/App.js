@@ -24,7 +24,7 @@ function App() {
 	function authenticate() {
 		return userAPI.authenticateUser()
 			.then(({ data }) => {
-				console.log('user:', data);
+				// console.log('user:', data);
 				setUserState(data);
 			})
 			.catch((err) => console.log('registered user:', err.response));

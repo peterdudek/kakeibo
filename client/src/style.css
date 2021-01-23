@@ -184,6 +184,7 @@ h1 {
   max-width: 128px;
   max-height: 128px;
   /* margin: 0 auto; */
+  box-shadow: 10px 10px 8px #888888;
 }
 
 /* .thumb:hover {
@@ -199,9 +200,10 @@ h1 {
   /* overflow: auto; */
   border-radius: 15px;
   border: 1px solid black;
-  margin-left: 5px;
+  /* margin-left: 5px; */
   /* padding: 10 px; */
   /* margin-bottom: 40px; */
+  box-shadow: 10px 10px 8px #888888;
 }
 
 .cnFlex {
@@ -228,4 +230,8 @@ h1 {
 
 .customFormMargin {
   margin-top: 40px;
+}
+
+.hide {
+  display: none;
 }

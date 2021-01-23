@@ -28,8 +28,8 @@
     align-items: center;
     justify-content: space-around;
     height: 10vh;
-    background: #031628; 
-    
+    background: rgb(78, 77, 77); 
+    opacity: 0.8;
     
   }
   
@@ -62,3 +62,7 @@
   border-radius: 50px;
   }
   
+.flattenBtn {
+  max-height: 38px;
+  border: none;
+}
