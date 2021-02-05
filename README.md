@@ -40,7 +40,7 @@ This application is covered by the Academic license.
 📭 Find me on GitHub: [RichardKatsnelson](https://github.com/RichardKatsnelson)<br />
 📭 Find me on GitHub: [Nuchana](https://github.com/nuchana)<br />
 <br />
-✉️ Email me with any questions: rkatsnelson91@gmail.com<br /><br />
-✉️ Email me with any questions: piotr72@gmail.com<br /><br />
+✉️ Email me with any questions: rkatsnelson91@gmail.com<br />
+✉️ Email me with any questions: piotr72@gmail.com<br />
 
 
