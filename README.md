@@ -8,7 +8,11 @@
 ## Live Version
 [Kakeibo](https://kakeibo21.herokuapp.com/) 🚀
 
-![Kakeibo-家計簿](client\src\img\Kakeibo-家計簿.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Piotr72us/piotr-portfolio-react/main/src/img/kakeibo-screen.png">
+</p>
+
+
 ## Table of Contents
 - [Description](#description)
 - [Live Version](#LiveVersion)
