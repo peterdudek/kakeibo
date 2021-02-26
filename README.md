@@ -31,12 +31,12 @@
 <br />
 This application is covered by the Academic license. 
 ## Contributing
-👪 Piotr Dudek, Richard Katsnelson, Nuchana Johnson
+👪 Peter Dudek, Richard Katsnelson, Nuchana Johnson
 
 ## Questions
 ✋ Contact us on Github<br />
 <br />
-📭 Find me on GitHub: [Piotr Dudek](https://github.com/Piotr72us)<br />
+📭 Find me on GitHub: [Peter Dudek](https://github.com/peterdudek)<br />
 📭 Find me on GitHub: [RichardKatsnelson](https://github.com/RichardKatsnelson)<br />
 📭 Find me on GitHub: [Nuchana](https://github.com/nuchana)<br />
 <br />
